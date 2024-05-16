@@ -7,7 +7,7 @@
             <ion-card-subtitle>Que le gustaria hacer el dia de hoy?</ion-card-subtitle>
           </ion-card-header>
           <ion-card-content>
-            <ion-img src="/CemexLogo.png"></ion-img>
+            <ion-img src="/Cemex_log.png"></ion-img>
           </ion-card-content>
         </ion-card>
         <card-reutilizable-component :title="titleCard1" :subtitle="subtitleCard1" :textUno="textUnoCard1" :textDos="textDosCard1" :IconoUno="'/person-add-outline.svg'" :IconoDos="'/list-outline.svg'"/>
