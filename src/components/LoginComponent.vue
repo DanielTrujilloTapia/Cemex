@@ -21,15 +21,15 @@
             <div class="margen100">
               <a style="text-decoration: none;" href=""> <p style="text-align: center;">Don’t have an account? Sing Up</p></a>
             </div>
-            <ion-footer>
+            <footer>
           <ion-img src="/DLogin.png"></ion-img>
-        </ion-footer>
+            </footer>
         </ion-content>
     </ion-page>
   </template>
   
   <script >
-  import {IonPage,IonInput, IonButton, IonImg,IonContent,IonFooter} from '@ionic/vue';
+  import {IonPage,IonInput, IonButton, IonImg,IonContent} from '@ionic/vue';
   
   
   export default {
@@ -40,7 +40,6 @@
       IonButton, 
       IonImg,
       IonContent,
-      IonFooter
     },
 
     data() {
