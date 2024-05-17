@@ -1,6 +1,7 @@
 <template>
     <ion-page>
-      <div>
+      <ion-content>
+        <ion-card style="height: 100%;">
             <div class="centrado margen100" >
             <ion-img src="/usuario.png" class="header-image"></ion-img>
           </div>
@@ -8,10 +9,10 @@
           <div class="centrado">
             <ion-list>
               <ion-item class="inputs">  
-                <ion-input class="espacio-input" v-model="username" label="Username" label-placement="floating"  fill="outline" placeholder="Nombre de usuario"></ion-input>
+                <ion-input v-model="username" label="Username" label-placement="floating"  fill="outline" placeholder="Nombre de usuario"></ion-input>
               </ion-item>
               <ion-item class="inputs">
-                <ion-input class="espacio-input" v-model="password" label="Password" label-placement="floating"  fill="outline" type="password" placeholder="contraseña"></ion-input>
+                <ion-input v-model="password" label="Password" label-placement="floating"  fill="outline" type="password" placeholder="contraseña"></ion-input>
               </ion-item>
             </ion-list>
         </div>
@@ -21,13 +22,13 @@
             <div class="margen100">
               <a style="text-decoration: none;" href=""> <p style="text-align: center;">Don’t have an account? Sing Up</p></a>
             </div>
-           
-      </div>
+          </ion-card>
+        </ion-content>
     </ion-page>
   </template>
   
   <script >
-  import {IonPage, IonItem, IonList, IonInput, IonButton, IonImg} from '@ionic/vue';
+  import {IonPage, IonItem, IonList, IonInput, IonButton, IonImg,IonContent, IonCard} from '@ionic/vue';
   
   
   export default {
@@ -39,6 +40,8 @@
       IonInput, 
       IonButton, 
       IonImg,
+      IonContent,
+      IonCard
     
     },
     data() {
@@ -49,8 +52,6 @@
   },
    methods:{
       async login() {
-  console.log(this.username);
-  console.log(this.password);
 
   if (this.username !== '' && this.password !== '') {
     try {
