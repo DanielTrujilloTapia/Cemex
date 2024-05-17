@@ -10,9 +10,9 @@
          
           <div class="inputs">
               <ion-label >Username</ion-label>
-                <ion-input class="item-inputs" v-model="username" fill="outline" placeholder="Nombre de usuario"></ion-input>
+                <ion-input class="item-inputs" v-model="username" fill="outline" placeholder="Ej: Admin"></ion-input>
                 <ion-label>Password</ion-label>
-                <ion-input class="item-inputs" v-model="password"   type="password" fill="outline" placeholder="contraseña"></ion-input>
+                <ion-input class="item-inputs" v-model="password"   type="password" fill="outline" placeholder="Ej: ashnoias"></ion-input>
               </div>
           </div>
             <div class="centrado" style="margin-top: 20px;">
@@ -21,13 +21,15 @@
             <div class="margen100">
               <a style="text-decoration: none;" href=""> <p style="text-align: center;">Don’t have an account? Sing Up</p></a>
             </div>
-         
+            <ion-footer>
+          <ion-img src="/DLogin.png"></ion-img>
+        </ion-footer>
         </ion-content>
     </ion-page>
   </template>
   
   <script >
-  import {IonPage,IonInput, IonButton, IonImg,IonContent} from '@ionic/vue';
+  import {IonPage,IonInput, IonButton, IonImg,IonContent,IonFooter} from '@ionic/vue';
   
   
   export default {
@@ -38,6 +40,7 @@
       IonButton, 
       IonImg,
       IonContent,
+      IonFooter
     },
 
     data() {
