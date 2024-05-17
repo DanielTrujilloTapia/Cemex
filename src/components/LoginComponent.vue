@@ -1,49 +1,45 @@
 <template>
     <ion-page>
-      <ion-content>
-        <ion-card style="height: 100%;">
-            <div class="centrado margen100" >
+
+      <ion-content class="content">
+      
+          <div class="centrado content">
+            <div class="margen100" >
             <ion-img src="/usuario.png" class="header-image"></ion-img>
           </div>
-          
-          <div class="centrado">
-            <ion-list>
-              <ion-item class="inputs">  
-                <ion-input v-model="username" label="Username" label-placement="floating"  fill="outline" placeholder="Nombre de usuario"></ion-input>
-              </ion-item>
-              <ion-item class="inputs">
-                <ion-input v-model="password" label="Password" label-placement="floating"  fill="outline" type="password" placeholder="contraseña"></ion-input>
-              </ion-item>
-            </ion-list>
-        </div>
+         
+          <div class="inputs">
+              <ion-label >Username</ion-label>
+                <ion-input class="item-inputs" v-model="username" fill="outline" placeholder="Nombre de usuario"></ion-input>
+                <ion-label>Password</ion-label>
+                <ion-input class="item-inputs" v-model="password"   type="password" fill="outline" placeholder="contraseña"></ion-input>
+              </div>
+          </div>
             <div class="centrado" style="margin-top: 20px;">
               <ion-button @click="login"  fill="solid">Login</ion-button>
             </div>
             <div class="margen100">
               <a style="text-decoration: none;" href=""> <p style="text-align: center;">Don’t have an account? Sing Up</p></a>
             </div>
-          </ion-card>
+         
         </ion-content>
     </ion-page>
   </template>
   
   <script >
-  import {IonPage, IonItem, IonList, IonInput, IonButton, IonImg,IonContent, IonCard} from '@ionic/vue';
+  import {IonPage,IonInput, IonButton, IonImg,IonContent} from '@ionic/vue';
   
   
   export default {
     name:'LoginComponente',
     components:{
       IonPage,
-      IonItem, 
-      IonList, 
       IonInput, 
       IonButton, 
       IonImg,
       IonContent,
-      IonCard
-    
     },
+
     data() {
     return {
       username: '',
@@ -88,8 +84,8 @@
   
   <style>
     .header-image{
-      width: 132px;
-      height: 131px;
+      width: 100px;
+      height: 100px;
     }
     .inputs{
       margin-top: 50px;
@@ -97,6 +93,8 @@
     .centrado{
       display: flex;
       justify-content: center;
+      align-items: center;
+      flex-direction: column;
     }
     .espacio-input{
       max-width: 300px;
@@ -104,5 +102,10 @@
     .margen100{
       margin-top: 100px;
     }
+    .item-inputs{
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    
    
   </style>
