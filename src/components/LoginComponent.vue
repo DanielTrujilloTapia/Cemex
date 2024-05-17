@@ -22,9 +22,9 @@
               <a style="text-decoration: none;" href=""> <p style="text-align: center;">Forma parte de Cemex</p></a>
             </div>
         </ion-content>
-        <footer>
+        <ion-footer style="all: unset;">
           <ion-img src="/DLogin.png"></ion-img>
-            </footer>
+            </ion-footer>
     </ion-page>
   </template>
   
@@ -108,6 +108,12 @@
       margin-top: 20px;
       margin-bottom: 20px;
     }
-    
+    ion-footer{
+      all:unset;
+      background: none;
+      padding: 0;
+      margin: 0;
+      border: none;
+    }
    
   </style>
