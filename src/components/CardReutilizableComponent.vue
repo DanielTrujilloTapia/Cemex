@@ -5,16 +5,15 @@
         <ion-card-subtitle>{{ subtitle }}</ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
-        <p><ion-icon :src="IconoUno"></ion-icon >{{ textUno }} </p>
-        <p><ion-icon :src="IconoDos"></ion-icon>{{ textDos }} </p>
-        
+        <p><ion-icon :src="IconoUno" color="primary"></ion-icon >{{ textUno }} </p>
+        <p><ion-icon :icon="IconoDos" color="primary"></ion-icon>{{ textDos }} </p>
       </ion-card-content>
     </ion-card>
   </template>
   
   <script>
   import { IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonIcon } from '@ionic/vue';
-  
+
   export default {
     name: 'CardReutilizableComponent',
     props: {
@@ -32,7 +31,7 @@
       IonCardSubtitle,
       IonCardContent,
       IonIcon,
-    },
+    }
   };
   </script>
   

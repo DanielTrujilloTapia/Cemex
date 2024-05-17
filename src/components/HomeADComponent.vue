@@ -10,9 +10,9 @@
             <ion-img src="/Cemex_log.png"></ion-img>
           </ion-card-content>
         </ion-card>
-        <card-reutilizable-component :title="titleCard1" :subtitle="subtitleCard1" :textUno="textUnoCard1" :textDos="textDosCard1" :IconoUno="'/person-add-outline.svg'" :IconoDos="'/list-outline.svg'"/>
-        <card-reutilizable-component :title="titleCard2" :subtitle="subtitleCard2" :textUno="textUnoCard2" :IconoUno="'/person-add-outline.svg'"/>
-        <card-reutilizable-component :title="titleCard3" :subtitle="subtitleCard3" :textUno="textUnoCard3" :textDos="textDosCard3" :IconoUno="'/lock-closed-outline.svg'" :IconoDos="'call-outline.svg'"/>
+        <card-reutilizable-component :title="titleCard1" :subtitle="subtitleCard1" :textUno="textUnoCard1" :textDos="textDosCard1" :IconoUno="personAddOutline" :IconoDos="listOutline"/>
+        <card-reutilizable-component :title="titleCard2" :subtitle="subtitleCard2" :textUno="textUnoCard2" :IconoUno="listOutline"/>
+        <card-reutilizable-component :title="titleCard3" :subtitle="subtitleCard3" :textUno="textUnoCard3" :textDos="textDosCard3" :IconoUno="lockClosedOutline" :IconoDos="callOutline"/>
 
       </ion-content>
     </ion-page>
@@ -21,6 +21,8 @@
   <script>
   import { IonPage, IonContent, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonImg} from '@ionic/vue';
   import CardReutilizableComponent from '../components/CardReutilizableComponent.vue'
+  
+  import { personAddOutline, listOutline, lockClosedOutline, callOutline} from 'ionicons/icons';
   export default {
     name: 'HomeAdComponent',
     components: {
@@ -49,6 +51,14 @@
         subtitleCard3: "Administra tu informacion y datos personales para un mejor inicio de sesion",
         textUnoCard3: "   Cambiar Contraseña?",
         textDosCard3: "   Agregar numero de telefono?"
+      }
+    },
+    setup() {
+      return {
+        personAddOutline,
+        listOutline,
+        lockClosedOutline,
+        callOutline
       }
     }
     
