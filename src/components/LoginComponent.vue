@@ -65,7 +65,8 @@
       }
 
       if (userToLogin.contrasena === this.password) {
-        localStorage.setItem('User-login', JSON.stringify(this.username)); 
+        localStorage.setItem('User-login', JSON.stringify(userToLogin)); 
+         
         alert('Inicio de sesión exitoso');
         this.$router.push("/tabs");
       } else {

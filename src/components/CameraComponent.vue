@@ -8,7 +8,6 @@
         </div>
             </div>
         </div>
-        
     </ion-page>
 </template>
 
@@ -42,20 +41,5 @@ const onDetect = (detectedCodes) => {
 </script>
 
 <style>
-    .fondo {
-  background: linear-gradient(0deg, #D1E1E6, #FFFFFF);
-}
-.contenedor{
-    width: 250px;
-    height: 250px;
-    margin-top: 150px;
-}
-.centrado{
-    display: flex;
-    justify-content: center;
-}
-.titulo{
-    margin-top: 100px;
-    text-align: center;
-}
+  
 </style>
