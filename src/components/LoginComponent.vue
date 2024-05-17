@@ -19,12 +19,12 @@
               <ion-button @click="login"  fill="solid">Login</ion-button>
             </div>
             <div class="margen100">
-              <a style="text-decoration: none;" href=""> <p style="text-align: center;">Don’t have an account? Sing Up</p></a>
+              <a style="text-decoration: none;" href=""> <p style="text-align: center;">Forma parte de Cemex</p></a>
             </div>
-            <footer>
+        </ion-content>
+        <footer>
           <ion-img src="/DLogin.png"></ion-img>
             </footer>
-        </ion-content>
     </ion-page>
   </template>
   
