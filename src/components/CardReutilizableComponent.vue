@@ -12,6 +12,7 @@
         ></ion-icon>
         {{ textUno }}
       </p>
+      <br>
       <p class="inline-content" @click="redirectRutaTwo">
         <ion-icon
           :icon="IconoDos"
