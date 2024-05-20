@@ -26,8 +26,8 @@
             <table style="width: 100%;">
               <thead>
                 <tr>
-                  <th><ion-img src="/camion.png" class="iconos"></ion-img></th>
-                  <th><ion-img src="/tanque.png" class="iconos"></ion-img></th>
+                  <th style="background: none;"><ion-img src="/camion.png" class="iconos"></ion-img></th>
+                  <th style="background: none;"><ion-img src="/tanque.png" class="iconos"></ion-img></th>
                 </tr>
               </thead>
               <tbody>
@@ -55,7 +55,7 @@
     </ion-content>
     <div v-if="dialogOpen" class="custom-dialog">
       <div class="dialog-content">
-        <h4>Selecciona la parte a escanear</h4>
+        <h4>Selecciona la parte a escanear</h4> 
         <div class="iconos-container">
           <ion-img src="/camion.png" class="iconos" @click="selectArray(1)"></ion-img>
           <ion-img src="/tanque.png" class="iconos" @click="selectArray(2)"></ion-img>
@@ -67,7 +67,7 @@
     </div>
     <ion-fab horizontal="end" vertical="bottom">
       <ion-fab-button @click="openDialog">
-        <ion-img src="/codigo-qr(1).png" class="iconos"></ion-img>
+        <ion-icon :icon="qrCodeOutline"></ion-icon>
       </ion-fab-button>
       <ion-label>Scanner</ion-label>
     </ion-fab>
@@ -88,8 +88,9 @@
 
 <script setup>
 import { ref} from 'vue';
-import { IonPage, IonContent, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonImg, IonFab, IonFabButton, IonHeader, IonToolbar, IonTitle, IonLabel, IonModal } from '@ionic/vue';
+import { IonPage, IonContent, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonImg, IonFab, IonFabButton, IonHeader, IonToolbar, IonTitle, IonLabel, IonModal,IonIcon } from '@ionic/vue';
 import { QrcodeStream } from 'vue-qrcode-reader';
+import {qrCodeOutline} from 'ionicons/icons';
 
 const qrCodes = ref({ array1: [], array2: [] });
 const dialogOpen = ref(false);

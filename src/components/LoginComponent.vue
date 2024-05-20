@@ -31,7 +31,7 @@
   </template>
   
   <script >
-  import {IonPage,IonInput, IonButton, IonImg,IonContent} from '@ionic/vue';
+  import {IonPage,IonInput, IonButton, IonImg,IonContent, IonLabel} from '@ionic/vue';
   
   
   export default {
@@ -42,6 +42,7 @@
       IonButton, 
       IonImg,
       IonContent,
+      IonLabel
     },
 
     data() {
