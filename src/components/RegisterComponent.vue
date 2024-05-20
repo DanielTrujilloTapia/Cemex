@@ -1,5 +1,6 @@
 <template>
     <ion-page>
+        <ion-content>
         <div class="container">
             <ion-img src="/DRegister.png" class="image"></ion-img>
             <ion-label class="register"><b>REGISTRO</b></ion-label>
@@ -29,6 +30,7 @@
 
             <ion-button @click="register" fill="solid" class="custom-button" style="margin-top:50px;">Sign Up</ion-button>
         </div>
+    </ion-content>
     </ion-page>
 </template>
 
@@ -116,7 +118,7 @@ export default {
 }
 
 .register {
-    margin-top: 35px;
+    margin-top: 25px;
     font-size: 1.5em;
     text-align: left;
 }
