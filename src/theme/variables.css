@@ -17,9 +17,23 @@ http://ionicframework.com/docs/theming/ */
       --ion-color-primary-contrast: #ffffff;
       --ion-color-primary-contrast-rgb: 255,255,255;
     }
+
+}
+
+:root {
+  --ion-color-red: #ff0000;
+  --ion-color-red-rgb: 255,0,0;
+  --ion-color-red-contrast: #ffffff;
+  --ion-color-red-contrast-rgb: 255,255,255;
+}
+
+.custom-red-button {
+  --background: var(--ion-color-red);
+  --color: var(--ion-color-red-contrast);
+  --border-radius: 8px;
 }
 .custom-button {
     --background: var(--ion-color-primary);
     --color: var(--ion-color-primary-contrast);
     --border-radius: 8px;
-  }
+}
