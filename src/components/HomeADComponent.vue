@@ -1,17 +1,31 @@
 <template>
     <ion-page>
+
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Cemex</ion-title>
+          <ion-progress-bar type="indeterminate"></ion-progress-bar>
+        </ion-toolbar>
+      </ion-header>
+
       <ion-content>
-        <ion-card style="height: auto;">
+        
+        <ion-card style="height: 50%;">
           <ion-card-header>
-            <ion-card-title>Bienvenido Administrador Aldair</ion-card-title>
-            <ion-card-subtitle>Que le gustaria hacer el dia de hoy?</ion-card-subtitle>
+              <ion-card-title>Bienvenido administrador {{ UserName }}  </ion-card-title>
           </ion-card-header>
+        
           <ion-card-content>
-            <ion-img src="/Cemex_log.png"></ion-img>
+            <ion-card-subtitle>Nos alegra verte. ¿Qué le gustaría hacer hoy?</ion-card-subtitle>
+
+            <ion-img src="/Cemex_log.png" style="max-width: 250px; height: auto; margin-bottom: 10px;"></ion-img>
+            
+            <p style="font-size: 16px; margin-top: 10px;">Elija una de las opciones a continuación para comenzar:</p>
           </ion-card-content>
         </ion-card>
-        <card-reutilizable-component :title="titleCard1" :subtitle="subtitleCard1" :textUno="textUnoCard1" :textDos="textDosCard1" :IconoUno="personAddOutline" :IconoDos="listOutline"/>
-        <card-reutilizable-component :title="titleCard2" :subtitle="subtitleCard2" :textUno="textUnoCard2" :IconoUno="listOutline"/>
+
+        <card-reutilizable-component :title="titleCard1" :subtitle="subtitleCard1" :RutaOne="'/register'" :RutaDos="'/board'" :textUno="textUnoCard1" :textDos="textDosCard1" :IconoUno="personAddOutline" :IconoDos="listOutline"/>
+        <card-reutilizable-component :title="titleCard2" :subtitle="subtitleCard2" :RutaOne="'/board'" :textUno="textUnoCard2" :IconoUno="listOutline"/>
         <card-reutilizable-component :title="titleCard3" :subtitle="subtitleCard3" :textUno="textUnoCard3" :textDos="textDosCard3" :IconoUno="lockClosedOutline" :IconoDos="callOutline"/>
 
       </ion-content>
@@ -19,7 +33,7 @@
   </template>
   
   <script>
-  import { IonPage, IonContent, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonImg} from '@ionic/vue';
+  import { IonPage, IonContent, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonImg, IonToolbar, IonTitle, IonHeader, IonProgressBar} from '@ionic/vue';
   import CardReutilizableComponent from '../components/CardReutilizableComponent.vue'
   
   import { personAddOutline, listOutline, lockClosedOutline, callOutline} from 'ionicons/icons';
@@ -34,23 +48,29 @@
       IonCardTitle, 
       IonCardContent,
       IonImg,
-      CardReutilizableComponent
+      CardReutilizableComponent,
+      IonToolbar,
+      IonTitle,
+      IonHeader,
+      IonProgressBar
     },
     data() {
       return {
         titleCard1: "Manejo y administracion de usuarios",
         subtitleCard1: "Esta herramienta nos permite administrar mejor la informacion de nuestros usuarios",
-        textUnoCard1: "   Crear nueva cuenta?",
-        textDosCard1: "   Consultar usuarios existentes?",
+        textUnoCard1: "Crear nueva cuenta?",
+        textDosCard1: "Consultar usuarios existentes?",
 
         titleCard2: "Consultar aditivos vaciados o contenedores",
         subtitleCard2: "Consultas sobre aditivos vaciados en contenedores",
-        textUnoCard2: "   Consultar aditivos vaciados?",
+        textUnoCard2: "Consultar aditivos vaciados?",
         
         titleCard3: "Gestionar cuenta",
         subtitleCard3: "Administra tu informacion y datos personales para un mejor inicio de sesion",
-        textUnoCard3: "   Cambiar Contraseña?",
-        textDosCard3: "   Agregar numero de telefono?"
+        textUnoCard3: "Cambiar Contraseña?",
+        textDosCard3: "Agregar numero de telefono?",
+
+        UserName:"",
       }
     },
     setup() {
@@ -58,9 +78,28 @@
         personAddOutline,
         listOutline,
         lockClosedOutline,
-        callOutline
+        callOutline,
       }
-    }
+    },
+    methods: {
+      getNameUserLogin (){
+        try {
+          const User = localStorage.getItem('User-login');
+          if (User) {
+            const NameUser = JSON.parse(User);
+            this.UserName = NameUser.nom_usuario;  
+            console.log("Datos obtenidos correctamente");
+          } else {
+            console.log("Vuelvaa iniciar sesion para evitar cualquier error con la sesion iniciada");
+          }   
+        } catch {
+          console.log("Hubo un error al obtener los datos de la sesion");
+        }
+      }
+    },
+    mounted() {
+      this.getNameUserLogin();
+    },
     
 
   }
