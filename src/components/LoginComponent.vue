@@ -1,30 +1,32 @@
 <template>
     <ion-page>
 
-      <ion-content class="content">
-      
+      <ion-content>
           <div class="centrado content">
-            <div class="margen100" >
-            <ion-img src="/usuario.png" class="header-image"></ion-img>
-          </div>
-         
-          <div class="inputs">
-              <ion-label >Username</ion-label>
-                <ion-input class="item-inputs" v-model="username" fill="outline" placeholder="Ej: Admin"></ion-input>
-                <ion-label>Password</ion-label>
-                <ion-input class="item-inputs" v-model="password"   type="password" fill="outline" placeholder="Ej: ashnoias"></ion-input>
-              </div>
-          </div>
-            <div class="centrado" style="margin-top: 20px;">
-              <ion-button @click="login"  fill="solid">Login</ion-button>
+              <div class="margen100" >
+                <ion-img src="/usuario.png" class="header-image"></ion-img>
             </div>
-            <div class="margen100">
-              <a style="text-decoration: none;" href=""> <p style="text-align: center;">Forma parte de Cemex</p></a>
+          
+            <div class="inputs">
+                <ion-label >Username</ion-label>
+                  <ion-input class="item-inputs" v-model="username" fill="outline" placeholder="Ej: Admin"></ion-input>
+                  <ion-label>Password</ion-label>
+                  <ion-input class="item-inputs" v-model="password"   type="password" fill="outline" placeholder="Ej: ashnoias"></ion-input>
             </div>
+            <div style="margin: 20px;">
+              <ion-button @click="login" fill="solid">Login</ion-button>
+            </div>
+            <div style="margin-top: 70px;">
+              <a style="text-decoration: none;" href="">Cemex</a>
+            </div>
+
+        <footer class="footer">
+          <div class="imagefooter">
+              <img src="/DLogin.png" alt="Descripción de la imagen" class="full-width-image">
+          </div>
+      </footer>
+          </div>
         </ion-content>
-        <ion-footer style="all: unset;">
-          <ion-img src="/DLogin.png"></ion-img>
-            </ion-footer>
     </ion-page>
   </template>
   
@@ -94,7 +96,6 @@
     }
     .centrado{
       display: flex;
-      justify-content: center;
       align-items: center;
       flex-direction: column;
     }
@@ -108,12 +109,29 @@
       margin-top: 20px;
       margin-bottom: 20px;
     }
-    ion-footer{
-      all:unset;
-      background: none;
-      padding: 0;
-      margin: 0;
-      border: none;
+   
+    .content{
+      position: relative;
+      min-height: 100vh;
+      padding-bottom: 80px;
     }
+    .footer {
+    width: 100%;
+    height: 80px;
+    position: absolute;
+    bottom: 0;
+    overflow: hidden;        /* Oculta cualquier contenido desbordado */
+}
+
+.imagefooter {
+    width: 100%;
+    height: 100%;
+}
+
+.full-width-image {
+    width: 100%;             /* Hace que la imagen ocupe el 100% del ancho del contenedor */
+    height: 80px;            /* Mantiene las proporciones de la imagen */
+}
+
    
   </style>
