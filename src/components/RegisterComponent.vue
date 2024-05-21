@@ -6,12 +6,12 @@
             <ion-label class="register"><b>REGISTRO</b></ion-label>
             <div class="separation">
                     <ion-label>Usuario</ion-label>
-                    <ion-input v-model="username" label-placement="floating" fill="outline" class="spacing" maxlength="8"></ion-input>
+                    <ion-input v-model="username" label-placement="floating" fill="outline" class="spacing" maxlength="10"></ion-input>
                     <ion-label>Contraseña</ion-label>
                     <ion-input v-model="password" label-placement="floating" fill="outline" type="password" class="spacing" maxlength="8" pattern="[a-zA-Z0-9]+"></ion-input>
                     <ion-label>Estado</ion-label>
                     <ion-item class="spacing">
-                    <ion-select v-model="selectedState"  label-placement="floating" class="ion-select-fixed">
+                    <ion-select v-model="selectedState"  placeholder="Activo" class="ion-select-fixed">
                         <ion-select-option value="1">Activo</ion-select-option>
                         <ion-select-option value="2">Inactivo</ion-select-option>
                         <ion-select-option value="3">Suspendido</ion-select-option>
@@ -20,7 +20,7 @@
                 <ion-label>Tipo</ion-label>
                 <ion-item class="spacing">
 
-                    <ion-select aria-label="Tipo Usuario" v-model="selectedType" label-placement="floating" class="ion-select-fixed">
+                    <ion-select aria-label="Tipo Usuario" v-model="selectedType" placeholder="Administrador" class="ion-select-fixed">
                         <ion-select-option value="1">Administrador</ion-select-option>
                         <ion-select-option value="2">Empleado</ion-select-option>
                         <ion-select-option value="3">Operador</ion-select-option>
@@ -28,14 +28,14 @@
                 </ion-item>
             </div>
 
-            <ion-button @click="register" fill="solid" class="custom-button" style="margin-top:50px;">Sign Up</ion-button>
+            <ion-button @click="register" fill="solid" style="margin-top:50px; margin-bottom:50px">Sign Up</ion-button>
         </div>
     </ion-content>
     </ion-page>
 </template>
 
 <script>
-import { IonImg, IonPage, IonItem, IonInput, IonSelect, IonSelectOption, IonButton } from '@ionic/vue';
+import { IonImg, IonPage, IonItem, IonInput, IonSelect, IonSelectOption, IonButton, IonContent, IonLabel } from '@ionic/vue';
 
 export default {
     name: 'RegisterComponent',
@@ -46,7 +46,9 @@ export default {
         IonInput,
         IonSelect,
         IonSelectOption,
-        IonButton
+        IonButton,
+        IonContent,
+        IonLabel
     },
     data() {
         return {
@@ -129,9 +131,11 @@ export default {
 .spacing ion-label {
     margin-bottom: 10px;
 }
-.ion-select-fixed .select-icon {
-    right: 15px;
+
+.spacing ion-select::part(icon) {
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    transform: translateY(-50%);
 }
-
-
 </style>
