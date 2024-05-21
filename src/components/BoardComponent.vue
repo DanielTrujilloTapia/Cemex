@@ -9,14 +9,17 @@
       <ion-card>
         <ion-grid>
           <ion-row>
-            <ion-col>
-              <h2>Tabla de usuarios</h2>
+            <ion-col size="7" class="pagination-text">
+              <h2>Usuarios {{searchType}}</h2>
             </ion-col>
-            <ion-col size="auto">
-              <ion-button @click="addNewUser">New User</ion-button>
+            <ion-col size="5" class="center-icon-addUser">
+              <ion-button @click="redirectRegister">
+                <ion-icon class="icon" :icon="personAddOutline"></ion-icon>
+                usuario
+              </ion-button>
             </ion-col>
           </ion-row>
-          <ion-row>
+          <ion-row style="margin-bottom: 10px;">
             <ion-col size="5">
               <ion-input placeholder="Username" v-model="searchName"></ion-input>
             </ion-col>
@@ -29,7 +32,7 @@
               </ion-select>
             </ion-col>
             <ion-col>
-              <ion-select v-model="searchState">
+              <ion-select v-model="searchState" >
                 <ion-select-option value="">Estado</ion-select-option>
                 <ion-select-option v-for="estado in estadoTabla" :key="estado.id_estado" :value="estado.nom_estado">
                   {{ estado.nom_estado }}
@@ -37,36 +40,36 @@
               </ion-select>
             </ion-col>
           </ion-row>
-          <ion-row class="table-header">
-            <ion-col>User</ion-col>
-            <ion-col>Tipo</ion-col>
-            <ion-col>Estado</ion-col>
-            <ion-col>Acciones</ion-col>
+          <ion-row >  
+            <ion-col class="pagination-text">User</ion-col>
+            <ion-col class="pagination-text">Tipo</ion-col>
+            <ion-col class="pagination-text">Estado</ion-col>
+            <ion-col class="pagination-text">Acciones</ion-col>
           </ion-row>
           <!-- Verificar si usuarioTabla está vacío o no -->
           <ion-row v-if="paginatedUsers.length === 0">
             <ion-col>No hay usuarios para mostrar</ion-col>
           </ion-row>
           <!-- Utilizar v-if para verificar si usuarioTabla tiene datos antes de iterar -->
-          <ion-row v-else v-for="usuario in paginatedUsers" :key="usuario.id_usuario" class="table-row">
-            <ion-col>{{ usuario.nom_usuario }}</ion-col>
-            <ion-col>{{ usuario.tipoUsuario ? usuario.tipoUsuario.nom_tipo : 'N/A' }}</ion-col>
-            <ion-col>{{ usuario.estadoUsuario ? usuario.estadoUsuario.nom_estado : 'N/A' }}</ion-col>
-            <ion-col>
+          <ion-row v-else v-for="usuario in paginatedUsers" :key="usuario.id_usuario" class="table-row table-space " >
+            <ion-col class="pagination-text">{{ usuario.nom_usuario }}</ion-col>
+            <ion-col class="pagination-text">{{ usuario.tipoUsuario ? usuario.tipoUsuario.nom_tipo : 'N/A' }}</ion-col>
+            <ion-col class="pagination-text">{{ usuario.estadoUsuario ? usuario.estadoUsuario.nom_estado : 'N/A' }}</ion-col>
+            <ion-col class="pagination-text">
               <ion-icon :icon="createOutline" class="Icon" color="primary"></ion-icon>
-              <ion-icon :icon="trashOutline" class="Icon" color=""></ion-icon>
+              <ion-icon :icon="trashOutline" class="Icon" color="danger"></ion-icon>
             </ion-col>
           </ion-row>
         </ion-grid>
-        <ion-row>
-          <ion-col size="auto">
-            <ion-icon color="primary" :icon="chevronBackOutline" @click="prevPage" :disabled="currentPage === 1"></ion-icon>
+        <ion-row class="pagination-row">
+          <ion-col class="pagination-icon">
+            <ion-icon class="icon" color="primary" :icon="chevronBackOutline" @click="prevPage" :disabled="currentPage === 1"></ion-icon>
           </ion-col>
-          <ion-col size="auto">
+          <ion-col size="auto" class="pagination-text">
             <span>Página {{ currentPage }} de {{ totalPages }}</span>
           </ion-col>
-          <ion-col size="auto">
-            <ion-icon color="primary" :icon="chevronForwardOutline" @click="nextPage" :disabled="currentPage === totalPages"></ion-icon>
+          <ion-col class="pagination-icon">
+            <ion-icon class="icon" color="primary" :icon="chevronForwardOutline" @click="nextPage" :disabled="currentPage === totalPages"></ion-icon>
           </ion-col>
         </ion-row>
       </ion-card>
@@ -75,9 +78,9 @@
 </template>
 
 <script>
-import { IonPage, IonContent, IonCard, IonGrid, IonRow, IonCol, IonButton, IonHeader, IonToolbar, IonTitle, IonInput, IonSelect, IonSelectOption, IonIcon } from '@ionic/vue';
-import { createOutline, trashOutline, chevronBackOutline, chevronForwardOutline} from 'ionicons/icons';
-
+import { IonPage, IonContent, IonCard, IonGrid, IonRow, IonCol, IonHeader, IonToolbar, IonTitle, IonInput, IonSelect, IonSelectOption, IonIcon, IonButton } from '@ionic/vue';
+import { createOutline, trashOutline, chevronBackOutline, chevronForwardOutline, personAddOutline} from 'ionicons/icons';
+import { useRouter } from 'vue-router';
 export default {
   name: 'BoardComponent',
   components: {
@@ -87,21 +90,30 @@ export default {
     IonGrid,
     IonRow,
     IonCol,
-    IonButton,
     IonHeader,
     IonToolbar,
     IonTitle,
     IonInput,
     IonSelect,
     IonSelectOption,
-    IonIcon
+    IonIcon,
+    IonButton,
   },
   setup() {
+    
+      const router = useRouter();
+      const redirectRegister = () => {
+        router.push('/register');
+      }
+
     return {
       createOutline,
       trashOutline,
       chevronForwardOutline,
-      chevronBackOutline
+      chevronBackOutline,
+      personAddOutline,
+      redirectRegister
+      
     };
   },
   data() {
@@ -113,7 +125,7 @@ export default {
       searchType: '',
       searchState: '',
       currentPage: 1,
-      itemsPerPage: 10
+      itemsPerPage: 5
     };
   },
   computed: {
@@ -139,7 +151,6 @@ export default {
       try {
         const responseUsuarios = await fetch('https://cemexapi20240515142245.azurewebsites.net/api/Usu_Usuarios');
         this.usuarioTabla = await responseUsuarios.json();
-        console.log(this.usuarioTabla);
         console.log("Consulta exitosa");
       } catch (error) {
         console.error("Error en la consulta de Usuarios:", error);
@@ -148,7 +159,6 @@ export default {
       try {
         const responseTipo = await fetch('https://cemexapi20240515142245.azurewebsites.net/api/Usu_Cat_Tipos_Usuarios');
         this.tipoTabla = await responseTipo.json();
-        console.log(this.tipoTabla);
         console.log("Consulta exitosa");
       } catch (error) {
         console.error("Error en la consulta de Tipos de usuarios:", error);
@@ -157,7 +167,6 @@ export default {
       try {
         const responseEstado = await fetch('https://cemexapi20240515142245.azurewebsites.net/api/Usu_Cat_Estados');
         this.estadoTabla = await responseEstado.json();
-        console.log(this.estadoTabla);
         console.log("Consulta exitosa");
       } catch (error) {
         console.error("Error en la consulta de Estados de usuarios:", error);
@@ -169,9 +178,7 @@ export default {
         return usuario;
       });
     },
-    addNewUser() {
-      // Lógica para agregar un nuevo usuario
-    },
+    
     nextPage() {
       if (this.currentPage < this.totalPages) {
         this.currentPage++;
@@ -191,8 +198,48 @@ export default {
 
 
 <style>
+.center-icon-addUser {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .Icon{
   margin-left: 5px;
   margin-right: 5px;
+  width: 20px;
+  height: 20px; 
+}
+
+/* Centrando los íconos de paginación y el texto */
+.pagination-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+.pagination-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  width: 15px;
+  height: 15px; 
+  margin-right: 5px;
+} 
+
+.pagination-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table-space {
+  margin: 25px 0;
 }
 </style>
