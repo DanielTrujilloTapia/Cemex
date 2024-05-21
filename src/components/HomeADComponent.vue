@@ -1,13 +1,6 @@
 <template>
     <ion-page>
-
-      <ion-header>
-        <ion-toolbar>
-          <ion-title>Cemex</ion-title>
-          <ion-progress-bar type="indeterminate"></ion-progress-bar>
-        </ion-toolbar>
-      </ion-header>
-
+      <toolbar-reutilizable-component :title="'Cemex'"/>
       <ion-content>
         
         <ion-card style="height: 50%;">
@@ -33,7 +26,8 @@
   </template>
   
   <script>
-  import { IonPage, IonContent, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonImg, IonToolbar, IonTitle, IonHeader, IonProgressBar} from '@ionic/vue';
+  import { IonPage, IonContent, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonImg } from '@ionic/vue';
+  import ToolbarReutilizableComponent from '../components/ToolbarReutilizableComponent.vue'
   import CardReutilizableComponent from '../components/CardReutilizableComponent.vue'
   
   import { personAddOutline, listOutline, lockClosedOutline, callOutline} from 'ionicons/icons';
@@ -49,10 +43,7 @@
       IonCardContent,
       IonImg,
       CardReutilizableComponent,
-      IonToolbar,
-      IonTitle,
-      IonHeader,
-      IonProgressBar
+      ToolbarReutilizableComponent,
     },
     data() {
       return {

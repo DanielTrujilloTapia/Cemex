@@ -1,16 +1,12 @@
 <template>
   <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Boards USER and ADITIVOS</ion-title>
-      </ion-toolbar>
-    </ion-header>
+    <toolbar-reutilizable-component :title="'Usuarios'"/>
     <ion-content>
       <ion-card>
         <ion-grid>
           <ion-row>
             <ion-col size="7" class="pagination-text">
-              <h2>Usuarios {{searchType}}</h2>
+              <h3>Usuarios {{searchType}}</h3>
             </ion-col>
             <ion-col size="5" class="center-icon-addUser">
               <ion-button @click="redirectRegister">
@@ -19,7 +15,7 @@
               </ion-button>
             </ion-col>
           </ion-row>
-          <ion-row style="margin-bottom: 10px;">
+          <ion-row style="margin-bottom: 15px;">
             <ion-col size="5">
               <ion-input placeholder="Username" v-model="searchName"></ion-input>
             </ion-col>
@@ -78,8 +74,9 @@
 </template>
 
 <script>
-import { IonPage, IonContent, IonCard, IonGrid, IonRow, IonCol, IonHeader, IonToolbar, IonTitle, IonInput, IonSelect, IonSelectOption, IonIcon, IonButton } from '@ionic/vue';
+import { IonPage, IonContent, IonCard, IonGrid, IonRow, IonCol, IonInput, IonSelect, IonSelectOption, IonIcon, IonButton } from '@ionic/vue';
 import { createOutline, trashOutline, chevronBackOutline, chevronForwardOutline, personAddOutline} from 'ionicons/icons';
+import ToolbarReutilizableComponent from '../components/ToolbarReutilizableComponent.vue'
 import { useRouter } from 'vue-router';
 export default {
   name: 'BoardComponent',
@@ -90,14 +87,12 @@ export default {
     IonGrid,
     IonRow,
     IonCol,
-    IonHeader,
-    IonToolbar,
-    IonTitle,
     IonInput,
     IonSelect,
     IonSelectOption,
     IonIcon,
     IonButton,
+    ToolbarReutilizableComponent
   },
   setup() {
     
