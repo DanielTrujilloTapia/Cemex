@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import { IonImg, IonPage, IonItem, IonInput, IonSelect, IonSelectOption, IonButton } from '@ionic/vue';
+import { IonImg, IonPage, IonItem, IonInput, IonSelect, IonSelectOption, IonButton, IonContent, IonLabel } from '@ionic/vue';
 
 export default {
     name: 'RegisterComponent',
@@ -46,7 +46,9 @@ export default {
         IonInput,
         IonSelect,
         IonSelectOption,
-        IonButton
+        IonButton,
+        IonContent,
+        IonLabel
     },
     data() {
         return {
