@@ -6,7 +6,7 @@
             <ion-label class="register"><b>REGISTRO</b></ion-label>
             <div class="separation">
                     <ion-label>Usuario</ion-label>
-                    <ion-input v-model="username" label-placement="floating" fill="outline" class="spacing" maxlength="8"></ion-input>
+                    <ion-input v-model="username" label-placement="floating" fill="outline" class="spacing" maxlength="10"></ion-input>
                     <ion-label>Contraseña</ion-label>
                     <ion-input v-model="password" label-placement="floating" fill="outline" type="password" class="spacing" maxlength="8" pattern="[a-zA-Z0-9]+"></ion-input>
                     <ion-label>Estado</ion-label>
@@ -28,7 +28,7 @@
                 </ion-item>
             </div>
 
-            <ion-button @click="register" fill="solid" class="custom-button" style="margin-top:50px;">Sign Up</ion-button>
+            <ion-button @click="register" fill="solid" class="custom-button" style="margin-top:50px">Sign Up</ion-button>
         </div>
     </ion-content>
     </ion-page>
@@ -52,8 +52,8 @@ export default {
         return {
             username: '',
             password: '',
-            selectedState: '',
-            selectedType: ''
+            selectedState: '1',
+            selectedType: '1'
         };
     },
     methods: {
