@@ -21,7 +21,7 @@
             </div>
           </div>
         </ion-card-header>
-        <ion-card-content>
+        <ion-card-content style="height: 200px;">
           <div style="max-height: 200px; overflow-y: auto;">
             <table style="width: 100%;">
               <thead>
@@ -31,10 +31,12 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(item, index) in qrCodes.array1" :key="index" :class="{ 'highlight': qrCodes.array2[index] !== item, 'highlight-green': qrCodes.array2[index] === item}">
-                  <td class="center-text"><p style="border-radius: 10px">{{ item }}</p></td>
-                  <td class="center-text">{{ qrCodes.array2[index] }}</td>
-                </tr>
+                <tr v-for="index in Math.max(qrCodes.array1.length, qrCodes.array2.length)" :key="index - 1" :class="{ 'highlight': qrCodes.array2[index - 1] !== qrCodes.array1[index - 1], 'highlight-green': qrCodes.array2[index - 1] === qrCodes.array1[index - 1]}">
+                <td class="center-text">
+                    <p style="border-radius: 10px">{{ qrCodes.array1[index - 1] || '' }}</p>
+                </td>
+                <td class="center-text">{{ qrCodes.array2[index - 1] || '' }}</td>
+            </tr>
               </tbody>
             </table>
           </div>
@@ -183,6 +185,7 @@ const peticiones = () => {
     }else{
       vali="incorrecta";
     }
+    
     console.log(x);
     if(qrCodes.value.array1[x]!=null && qrCodes.value.array2[x]!=null  ){
       console.log("hora de hacer fetch");
@@ -190,12 +193,16 @@ const peticiones = () => {
       x=x+1;
       
       try {
-        const fecha1 = new Date().toISOString('en-US', { timeZone: 'America/Mexico_City' }); // Obtener la fecha actual en formato ISO
+        const fecha2 = new Date().toLocaleString('en-US', { timeZone: 'America/Mexico_City' });
+        const fecha2Objeto = new Date(fecha2); // Convertir la cadena a un objeto Date
+        const desplazamiento = fecha2Objeto.getTimezoneOffset(); // Obtener el desplazamiento de la zona horaria en minutos
+        const fecha2EnUTC = new Date(fecha2Objeto.getTime() - desplazamiento * 60000); // Convertir la hora local a UTC
+        const fecha2ISO = fecha2EnUTC.toISOString(); // Obtener la representación en formato ISO
 
         console.log(elemento);
         console.log(elemento2);
         console.log(vali);
-        console.log(fecha1);
+        console.log(fecha2ISO);
         console.log(Userid.id_usuario);
         console.log(ubicacionDetallada.value);
 
@@ -210,7 +217,7 @@ const peticiones = () => {
             nom_contenedor: elemento2,
             descripcion_aditivo:'liquido',  
             validacion: vali,
-            fecha: fecha1,
+            fecha: fecha2ISO,
             localizacion: ubicacionDetallada.value,
             id_usuusuario:Userid.id_usuario
           })
