@@ -11,7 +11,9 @@
                 <ion-label >Username</ion-label>
                   <ion-input class="item-inputs" v-model="username" fill="outline" placeholder="Ej: Admin"></ion-input>
                   <ion-label>Password</ion-label>
-                  <ion-input class="item-inputs" v-model="password"   type="password" fill="outline" placeholder="Ej: ashnoias"></ion-input>
+                  <ion-input class="item-inputs" v-model="password"   type="password" fill="outline" placeholder="Ej: ashnoias">
+                    <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+                  </ion-input>
             </div>
             <div style="margin: 20px;">
               <ion-button @click="login" fill="solid">Login</ion-button>
@@ -31,7 +33,7 @@
   </template>
   
   <script >
-  import {IonPage,IonInput, IonButton, IonImg,IonContent, IonLabel} from '@ionic/vue';
+  import {IonPage,IonInput, IonButton, IonImg,IonContent, IonLabel, IonInputPasswordToggle} from '@ionic/vue';
   
   
   export default {
@@ -42,7 +44,8 @@
       IonButton, 
       IonImg,
       IonContent,
-      IonLabel
+      IonLabel,
+      IonInputPasswordToggle
     },
 
     data() {
