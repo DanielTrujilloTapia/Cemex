@@ -7,7 +7,7 @@
           <ion-card-header>
               <ion-card-title>Bienvenido administrador {{ UserName }}  </ion-card-title>
           </ion-card-header>
-        
+          
           <ion-card-content>
             <ion-card-subtitle>Nos alegra verte. ¿Qué le gustaría hacer hoy?</ion-card-subtitle>
 
