@@ -18,7 +18,7 @@
         </ion-card>
 
         <card-reutilizable-component :title="titleCard1" :subtitle="subtitleCard1" :RutaOne="'/register'" :RutaDos="'/board'" :textUno="textUnoCard1" :textDos="textDosCard1" :IconoUno="personAddOutline" :IconoDos="listOutline"/>
-        <card-reutilizable-component :title="titleCard2" :subtitle="subtitleCard2" :RutaOne="'/board'" :textUno="textUnoCard2" :IconoUno="listOutline"/>
+        <card-reutilizable-component :title="titleCard2" :subtitle="subtitleCard2" :RutaOne="'/boardaditivos'" :textUno="textUnoCard2" :IconoUno="listOutline"/>
         <card-reutilizable-component :title="titleCard3" :subtitle="subtitleCard3" :textUno="textUnoCard3" :textDos="textDosCard3" :IconoUno="lockClosedOutline" :IconoDos="callOutline"/>
 
       </ion-content>
