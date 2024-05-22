@@ -7,6 +7,7 @@ import DeleteAccountPage from '../views/DeleteAccountPage.vue'
 import CameraPage from '../views/CameraPage.vue'
 import BoardPage from '../views/BoardPage.vue'
 import BoardAditivosPage from '../views/BoardAditivosPage.vue'
+import EditAccountPage from '../views/EditAccountPage.vue'
 
 const routes = [
   {
@@ -47,6 +48,11 @@ const routes = [
     path: '/boardaditivos',
     name: 'BoardAditivos',
     component: BoardAditivosPage
+  },
+  {
+    path: '/editaccount',
+    name: 'EditAccount',
+    component: EditAccountPage
   },
 
   {
