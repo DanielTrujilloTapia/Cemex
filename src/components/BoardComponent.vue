@@ -52,8 +52,8 @@
             <ion-col class="pagination-text">{{ usuario.tipoUsuario ? usuario.tipoUsuario.nom_tipo : 'N/A' }}</ion-col>
             <ion-col class="pagination-text">{{ usuario.estadoUsuario ? usuario.estadoUsuario.nom_estado : 'N/A' }}</ion-col>
             <ion-col class="pagination-text">
-              <ion-icon :icon="createOutline" class="Icon" color="primary"></ion-icon>
-              <ion-icon :icon="trashOutline" class="Icon" color="danger"></ion-icon>
+              <ion-icon :icon="createOutline" class="Icon" color="primary" @click="handleEditClick(usuario.id_usuario)"></ion-icon>
+              <ion-icon :icon="trashOutline" class="Icon" color="danger" @click="DeleteGetId(usuario.id_usuario)"></ion-icon>
             </ion-col>
           </ion-row>
         </ion-grid>
@@ -76,7 +76,8 @@
 <script>
 import { IonPage, IonContent, IonCard, IonGrid, IonRow, IonCol, IonInput, IonSelect, IonSelectOption, IonIcon, IonButton } from '@ionic/vue';
 import { createOutline, trashOutline, chevronBackOutline, chevronForwardOutline, personAddOutline} from 'ionicons/icons';
-import ToolbarReutilizableComponent from '../components/ToolbarReutilizableComponent.vue'
+import ToolbarReutilizableComponent from '../components/ToolbarReutilizableComponent.vue';
+
 import { useRouter } from 'vue-router';
 export default {
   name: 'BoardComponent',
@@ -120,7 +121,7 @@ export default {
       searchType: '',
       searchState: '',
       currentPage: 1,
-      itemsPerPage: 5
+      itemsPerPage: 5,
     };
   },
   computed: {
@@ -183,7 +184,28 @@ export default {
       if (this.currentPage > 1) {
         this.currentPage--;
       }
-    }
+    },
+    
+    handleEditClick(id_usuario) {
+      // Aquí puedes manejar la lógica para editar el usuario con el ID proporcionado
+      // Puedes pasar este ID al componente de edición de usuario o realizar otras acciones necesarias
+      console.log("Editar usuario con ID:", id_usuario);
+    },
+
+    async DeleteGetId(id_user) {
+      try {
+        await fetch(`https://cemexapi20240515142245.azurewebsites.net/api/Usu_Usuarios?id=${id_user}`, {
+        method: 'DELETE'
+        });
+        console.log('Usuario eliminado correctamente', id_user)
+        this.ConsultasDatos();
+      } catch (error) {
+        console.error("Error al eliminar el usuario:", error);
+      }
+
+      
+    },
+
   },
   created() {
     this.ConsultasDatos();
