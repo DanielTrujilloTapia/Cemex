@@ -4,7 +4,7 @@
         <div class="container-header">
             <div class="header">
             <ion-img src="/edit-account.png" class="header-image"></ion-img>
-            <ion-label class="register"><b>EDITAR CUENTA</b></ion-label>
+            <ion-label class="register"><b>EDITAR USUARIO</b></ion-label>
         </div>
         </div>
         <div class="container">
