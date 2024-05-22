@@ -16,7 +16,8 @@
                   </ion-input>
             </div>
             <div style="margin: 20px;">
-              <ion-button @click="login" fill="solid">Login</ion-button>
+              <ion-button id="open-loading" @click="login" fill="solid">Login</ion-button>
+              <ion-loading :is-open="loading" message="Cargando..." spinner="circles"></ion-loading>
             </div>
             <div style="margin-top: 70px;">
               <a style="text-decoration: none;" href="">Cemex</a>
@@ -33,7 +34,7 @@
   </template>
   
   <script >
-  import {IonPage,IonInput, IonButton, IonImg,IonContent, IonLabel, IonInputPasswordToggle} from '@ionic/vue';
+  import {IonPage,IonInput, IonButton, IonImg,IonContent, IonLabel, IonInputPasswordToggle, IonLoading} from '@ionic/vue';
   
   
   export default {
@@ -45,18 +46,20 @@
       IonImg,
       IonContent,
       IonLabel,
-      IonInputPasswordToggle
+      IonInputPasswordToggle,
+      IonLoading
     },
 
     data() {
     return {
       username: '',
       password: '',
+      loading: false
     };
   },
    methods:{
       async login() {
-
+        this.loading = true; 
   if (this.username !== '' && this.password !== '') {
     try {
       const response = await fetch('https://cemexapi20240515142245.azurewebsites.net/api/Usu_Usuarios');
@@ -71,17 +74,19 @@
 
       if (userToLogin.contrasena === this.password) {
         localStorage.setItem('User-login', JSON.stringify(userToLogin)); 
-         
+        this.loading = false;
         alert('Inicio de sesión exitoso');
         this.$router.push("/tabs");
       } else {
         throw new Error('Contraseña incorrecta');
       }
     } catch (error) {
+      this.loading = false;
       alert(('Error al iniciar sesión:', error.message));
     }
   } else {
-    console.error('Usuario y contraseña son obligatorios');
+    this.loading = false; 
+    alert('Usuario y contraseña son obligatorios');
   }
 },
 
