@@ -8,7 +8,8 @@
                     <ion-label>Usuario</ion-label>
                     <ion-input v-model="username" label-placement="floating" fill="outline" class="spacing" maxlength="10"></ion-input>
                     <ion-label>Contraseña</ion-label>
-                    <ion-input v-model="password" label-placement="floating" fill="outline" type="password" class="spacing" maxlength="8" pattern="[a-zA-Z0-9]+"></ion-input>
+                    <ion-input v-model="password" label-placement="floating" fill="outline" type="password" class="spacing" maxlength="8" pattern="[a-zA-Z0-9]+">
+                    <ion-input-password-toggle slot="end"></ion-input-password-toggle></ion-input>
                     <ion-label>Estado</ion-label>
                     <ion-item class="spacing">
                     <ion-select v-model="selectedState"  placeholder="Activo" class="ion-select-fixed">
@@ -28,14 +29,14 @@
                 </ion-item>
             </div>
 
-            <ion-button @click="register" fill="solid" style="margin-top:50px; margin-bottom:50px">Sign Up</ion-button>
+            <ion-button @click="register" fill="solid" style="margin-top:50px; margin-bottom:50px">Registrar</ion-button>
         </div>
     </ion-content>
     </ion-page>
 </template>
 
 <script>
-import { IonImg, IonPage, IonItem, IonInput, IonSelect, IonSelectOption, IonButton, IonContent, IonLabel } from '@ionic/vue';
+import { IonImg, IonPage, IonItem, IonInput, IonSelect, IonSelectOption, IonButton, IonContent, IonLabel , IonInputPasswordToggle } from '@ionic/vue';
 
 export default {
     name: 'RegisterComponent',
@@ -48,7 +49,8 @@ export default {
         IonSelectOption,
         IonButton,
         IonContent,
-        IonLabel
+        IonLabel,
+        IonInputPasswordToggle
     },
     data() {
         return {
@@ -61,10 +63,6 @@ export default {
     methods: {
         async register() {
             if (this.username !== '' && this.password !== '' && this.selectedState !== '' && this.selectedType !== '') {
-                // if(this.username.length> 8  && this.password.length> 8){
-                //     alert('El usuario y contraseña deben tener maximo 8 caracteres');
-                //     return
-                // }
                 try {
             const checkUser = await fetch(`https://cemexapi20240515142245.azurewebsites.net/api/Usu_Usuarios?nom_usuario=${this.username}`);
             const existingUsers = await checkUser.json();
