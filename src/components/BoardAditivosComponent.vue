@@ -1,17 +1,34 @@
 <template>
-    <ion-page class="horizontal-view">
-        <toolbar-reutilizable-component :title="'Aditivos'"/>
-        <ion-content>
-            <div class="content">
-                <h2>Contenido en modo horizontal</h2>
-            </div>
+    <ion-page>
+      <toolbar-reutilizable-component :title="'Aditivos'"/>
+      <ion-content>
+        <ion-card>
+          <ion-grid>
+            <ion-row>
+                <ion-col>idusuusuario</ion-col>
+                <ion-col>nom_aditivos</ion-col>
+                <ion-col>nom_contenedor</ion-col>
+                <ion-col>validacion</ion-col>
+                <ion-col>fecha</ion-col>
+                <ion-col>Localizacion</ion-col>
+            </ion-row>
+            <ion-row v-for="aditivo in this.aditivosTabla" :key="aditivo.id_aditivos">
+                <ion-col>{{ aditivo.UsuarioDato ? aditivo.UsuarioDato.nom_usuario : 'N/A' }}</ion-col>
+                <ion-col>{{ aditivo.nom_aditivo }}</ion-col>
+                <ion-col>{{ aditivo.nom_contenedor }}</ion-col>
+                <ion-col>{{ aditivo.validacion }}</ion-col>
+                <ion-col>{{ aditivo.fecha }}</ion-col>
+                <ion-col>{{ aditivo.localizacion }}</ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
       </ion-content>
     </ion-page>
   </template>
   
   <script>
-  import { IonPage, IonContent } from '@ionic/vue';
-  import { ScreenOrientation } from '@capacitor/screen-orientation';
+  import { IonPage, IonContent, IonCard, IonGrid, IonCol, IonRow } from '@ionic/vue';
+  
   import ToolbarReutilizableComponent from './ToolbarReutilizableComponent.vue';
   
   export default {
@@ -19,55 +36,50 @@
     components: {
       IonPage,
       IonContent,
+      IonCard,
+      IonGrid, 
+      IonCol, 
+      IonRow,
       ToolbarReutilizableComponent
     },
-    async mounted() {
-      try {
-        if (typeof ScreenOrientation.lock !== 'undefined') {
-          // Bloquear la orientación en modo landscape al montar el componente
-          await ScreenOrientation.lock({ orientation: 'landscape' });
-        } else {
-          throw new Error('ScreenOrientation API not available');
+    data (){
+        return {
+            aditivosTabla: [],
+            usuarioTabla: [],
         }
-      } catch (err) {
-        console.error("Error locking orientation:", err);
-        alert("La API de orientación de pantalla no está disponible en este navegador.");
-      }
     },
-    beforeUnmount() {
-      try {
-        // Desbloquear la orientación al desmontar el componente
-        ScreenOrientation.unlock();
-      } catch (err) {
-        console.error("Error unlocking orientation:", err);
-      }
+    methods: {
+        async ConsultarAditivosVaciados() {
+            try {
+                const responseAditivos = await fetch('https://cemexapi20240515142245.azurewebsites.net/api/Cat_Aditivos');
+                this.aditivosTabla = await responseAditivos.json();
+                console.log("Consulta exitosa de aditivos");
+                console.log(this.aditivosTabla);
+            } catch (error) {
+                console.error("Error en la consulta de los Aditivos:", error);
+            }
+  
+            try {
+                const responseUsuarios = await fetch('https://cemexapi20240515142245.azurewebsites.net/api/Usu_Usuarios');
+                this.usuarioTabla = await responseUsuarios.json();
+                console.log("Consulta exitosa de usuarios");
+                console.log(this.usuarioTabla);
+            } catch (error) {
+                console.error("Error en la consulta de Usuarios:", error);
+            }
+  
+            this.aditivosTabla = this.aditivosTabla.map(aditivo => {
+                aditivo.UsuarioDato = this.usuarioTabla.find(usuario => usuario.id_usuario === aditivo.id_usuusuario);  
+                return aditivo;
+            });
+        }
+    },
+    created() {
+        this.ConsultarAditivosVaciados();
     },
   };
   </script>
   
-  <style scoped>
-  .horizontal-view {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-  }
-  
-  .content {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-  }
-  
-  @media (orientation: portrait) {
-    .horizontal-view {
-      display: none;
-    }
-  }
+  <style>
   </style>
   
