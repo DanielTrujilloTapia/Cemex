@@ -4,7 +4,7 @@
         <div class="container-header">
             <div class="header">
             <ion-img src="/edit-account.png" class="header-image"></ion-img>
-            <ion-label class="register"><b>EDITAR USUARIO</b></ion-label>
+            <ion-label class="edit"><b>EDITAR USUARIO</b></ion-label>
         </div>
         </div>
         <div class="container">
@@ -109,7 +109,7 @@ export default {
     width: 10%;
 }
 
-.register {
+.edit {
     margin-top: 25px;
     font-size: 1.5em;
     text-align: left;
