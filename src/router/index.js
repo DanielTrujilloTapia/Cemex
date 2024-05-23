@@ -4,7 +4,6 @@ import LoginPage from '../views/LoginPage.vue'
 import RegisterPage from '../views/RegisterPage.vue'
 import EditProfilePage from '../views/EditProfilePage.vue'
 import DeleteAccountPage from '../views/DeleteAccountPage.vue'
-import CameraPage from '../views/CameraPage.vue'
 import BoardPage from '../views/BoardPage.vue'
 import BoardAditivosPage from '../views/BoardAditivosPage.vue'
 import EditAccountPage from '../views/EditAccountPage.vue'
@@ -34,11 +33,7 @@ const routes = [
     name: 'DeleteAccount',
     component: DeleteAccountPage
   },
-  {
-    path: '/camera',
-    name: 'Camera',
-    component: CameraPage
-  },
+
   {
     path: '/board',
     name: 'Board',
