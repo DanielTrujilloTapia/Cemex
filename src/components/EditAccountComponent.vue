@@ -16,7 +16,7 @@
                     <ion-input-password-toggle slot="end"></ion-input-password-toggle></ion-input>
                     <ion-label>Estado</ion-label>
                     <ion-item class="spacing">
-                    <ion-select v-model="selectedState"  placeholder="Activo" class="ion-select-fixed">
+                    <ion-select v-model="selectedState" class="ion-select-fixed">
                         <ion-select-option value="1">Activo</ion-select-option>
                         <ion-select-option value="2">Inactivo</ion-select-option>
                         <ion-select-option value="3">Suspendido</ion-select-option>
@@ -25,7 +25,7 @@
                 <ion-label>Tipo</ion-label>
                 <ion-item class="spacing">
 
-                    <ion-select aria-label="Tipo Usuario" v-model="selectedType" placeholder="Administrador" class="ion-select-fixed">
+                    <ion-select aria-label="Tipo Usuario" v-model="selectedType" class="ion-select-fixed">
                         <ion-select-option value="1">Administrador</ion-select-option>
                         <ion-select-option value="2">Empleado</ion-select-option>
                         <ion-select-option value="3">Operador</ion-select-option>
