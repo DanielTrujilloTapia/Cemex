@@ -4,7 +4,7 @@
       <ion-content>
           <div class="centrado content">
               <div class="margen100" >
-                <ion-img src="/usuario.png" class="header-image"></ion-img>
+                <ion-img src="/usuario.png" class="image-user"></ion-img>
             </div>
           
             <div class="inputs">
@@ -96,7 +96,7 @@
   </script>
   
   <style>
-    .header-image{
+    .image-user{
       width: 100px;
       height: 100px;
     }
