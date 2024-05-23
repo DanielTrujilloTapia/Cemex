@@ -9,7 +9,7 @@
               <h3>Usuarios {{searchType}}</h3>
             </ion-col>
             <ion-col size="5" class="center-icon-addUser">
-              <ion-button @click="redirectRegister">
+              <ion-button @click.prevent="redirectRegister">
                 <ion-icon class="icon" :icon="personAddOutline"></ion-icon>
                 usuario
               </ion-button>
@@ -52,20 +52,20 @@
             <ion-col class="pagination-text">{{ usuario.tipoUsuario ? usuario.tipoUsuario.nom_tipo : 'N/A' }}</ion-col>
             <ion-col class="pagination-text">{{ usuario.estadoUsuario ? usuario.estadoUsuario.nom_estado : 'N/A' }}</ion-col>
             <ion-col class="pagination-text">
-              <ion-icon :icon="createOutline" class="Icon" color="primary" @click="handleEditClick(usuario.id_usuario)"></ion-icon>
-              <ion-icon :icon="trashOutline" class="Icon" color="danger" @click="DeleteGetId(usuario.id_usuario)"></ion-icon>
+              <ion-icon :icon="createOutline" class="Icon" color="primary" @click.prevent="handleEditClick(usuario.id_usuario), redirectEditAccount"></ion-icon>
+              <ion-icon :icon="trashOutline" class="Icon" color="danger" @click.prevent="DeleteGetId(usuario.id_usuario)"></ion-icon>
             </ion-col>
           </ion-row>
         </ion-grid>
         <ion-row class="pagination-row">
           <ion-col class="pagination-icon">
-            <ion-icon class="icon" color="primary" :icon="chevronBackOutline" @click="prevPage" :disabled="currentPage === 1"></ion-icon>
+            <ion-icon class="icon" color="primary" :icon="chevronBackOutline" @click.prevent="prevPage" :disabled="currentPage === 1"></ion-icon>
           </ion-col>
           <ion-col size="auto" class="pagination-text">
             <span>Página {{ currentPage }} de {{ totalPages }}</span>
           </ion-col>
           <ion-col class="pagination-icon">
-            <ion-icon class="icon" color="primary" :icon="chevronForwardOutline" @click="nextPage" :disabled="currentPage === totalPages"></ion-icon>
+            <ion-icon class="icon" color="primary" :icon="chevronForwardOutline" @click.prevent="nextPage" :disabled="currentPage === totalPages"></ion-icon>
           </ion-col>
         </ion-row>
       </ion-card>
@@ -98,9 +98,16 @@ export default {
   setup() {
     
       const router = useRouter();
+      
       const redirectRegister = () => {
         router.push('/register');
       }
+
+      const handleEditClick = (id_usuario) => {
+        localStorage.setItem('id-user-edit', JSON.stringify(id_usuario)); 
+        console.log('id enviada', id_usuario);
+        router.push('/editaccount');
+    }
 
     return {
       createOutline,
@@ -108,8 +115,8 @@ export default {
       chevronForwardOutline,
       chevronBackOutline,
       personAddOutline,
-      redirectRegister
-      
+      redirectRegister,
+      handleEditClick
     };
   },
   data() {
@@ -186,11 +193,7 @@ export default {
       }
     },
     
-    handleEditClick(id_usuario) {
-      // Aquí puedes manejar la lógica para editar el usuario con el ID proporcionado
-      // Puedes pasar este ID al componente de edición de usuario o realizar otras acciones necesarias
-      console.log("Editar usuario con ID:", id_usuario);
-    },
+    
 
     async DeleteGetId(id_user) {
       try {

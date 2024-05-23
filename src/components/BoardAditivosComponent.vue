@@ -28,7 +28,7 @@
   
   <script>
   import { IonPage, IonContent, IonCard, IonGrid, IonCol, IonRow } from '@ionic/vue';
-  
+  //import { ScreenOrientation } from '@capacitor/screen-orientation';
   import ToolbarReutilizableComponent from './ToolbarReutilizableComponent.vue';
   
   export default {
@@ -77,6 +77,31 @@
     created() {
         this.ConsultarAditivosVaciados();
     },
+    //mounted() {
+    //    // Definir una función asíncrona dentro del mounted
+    //    const lockOrientation = async () => {
+    //        try {
+    //            if (typeof ScreenOrientation.lock !== 'undefined') {
+    //                await ScreenOrientation.lock({ orientation: 'landscape' });
+    //            } else {
+    //                throw new Error('ScreenOrientation API not available');
+    //            }
+    //        } catch (err) {
+    //            console.error("Error locking orientation:", err);
+    //            alert("La API de orientación de pantalla no está disponible en este navegador.");
+    //        }
+    //    };
+    //    lockOrientation();
+    //},
+  //
+    //beforeUnmount() {
+    //  try {
+    //    // Desbloquear la orientación al desmontar el componente
+    //    ScreenOrientation.unlock();
+    //  } catch (err) {
+    //    console.error("Error unlocking orientation:", err);
+    //  }
+    //},
   };
   </script>
   
