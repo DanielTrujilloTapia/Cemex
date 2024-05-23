@@ -81,14 +81,14 @@ export default {
 .container-header {
     position: relative;
     display: flex;
+    align-items: center;
     flex-direction: column;
-    align-items: flex-start;
     justify-content: flex-end;
     width: 100%;
     height: 130px;
 }
 .header {
-    position: absolute;
+
     display: flex;
     align-items: center;
     margin-bottom: 30px;
