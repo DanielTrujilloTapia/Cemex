@@ -89,11 +89,9 @@ export default {
 }
 .header {
     position: absolute;
-    bottom: 0;
-    left: 60px;
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
 }
 
 .header-image {
