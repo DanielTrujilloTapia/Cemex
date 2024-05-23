@@ -29,7 +29,7 @@
                 </ion-item>
             </div>
 
-            <ion-button @click="register" fill="solid" style="margin-top:50px; margin-bottom:50px">Sign Up</ion-button>
+            <ion-button @click="register" fill="solid" style="margin-top:50px; margin-bottom:50px">Registrar</ion-button>
         </div>
     </ion-content>
     </ion-page>
