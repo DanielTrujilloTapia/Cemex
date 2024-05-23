@@ -4,7 +4,7 @@
         <div class="container-header">
             <div class="header">
             <ion-img src="/edit-account.png" class="header-image"></ion-img>
-            <ion-label class="edit"><b>EDITAR USUARIO</b></ion-label>
+            <ion-label><b>EDITAR USUARIO</b></ion-label>
         </div>
         </div>
         <div class="container">
@@ -101,16 +101,6 @@ export default {
 }
 .separation{
     margin-top: 50px;
-}
-
-.image {
-    width: 10%;
-}
-
-.edit {
-    margin-top: 25px;
-    font-size: 1.5em;
-    text-align: left;
 }
 .spacing{
     margin-bottom: 25px;
