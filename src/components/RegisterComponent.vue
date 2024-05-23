@@ -82,7 +82,6 @@ export default {
                         headers: {'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
-                            id_usuario: 0,
                             nom_usuario: this.username,
                             contrasena: this.password,
                             idusucatestado: parseInt(this.selectedState),
