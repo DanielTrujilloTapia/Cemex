@@ -156,7 +156,7 @@ const obtenerUbicacion = async () => {
       }
     );
   } catch (error) {
-    console.log('Error al obtener la ubicación', error);
+   alert('Error al obtener la ubicación', error);
   }
 };
 
@@ -167,7 +167,7 @@ const obtenerUbicacionDetallada = async (lat, lon) => {
     const data = await response.json();
     ubicacionDetallada.value = data.display_name;
   } catch (error) {
-    console.log('Error al obtener la ubicación detallada', error);
+   alert('Error al obtener la ubicación detallada', error);
     ubicacionDetallada.value = 'Ubicación desconocida';
   }
 };
@@ -186,25 +186,15 @@ const peticiones = () => {
       vali="incorrecta";
     }
     
-    console.log(x);
     if(qrCodes.value.array1[x]!=null && qrCodes.value.array2[x]!=null  ){
-      console.log("hora de hacer fetch");
-      console.log(vali);
       x=x+1;
       
       try {
         const fecha2 = new Date().toLocaleString('en-US', { timeZone: 'America/Mexico_City' });
-        const fecha2Objeto = new Date(fecha2); // Convertir la cadena a un objeto Date
-        const desplazamiento = fecha2Objeto.getTimezoneOffset(); // Obtener el desplazamiento de la zona horaria en minutos
-        const fecha2EnUTC = new Date(fecha2Objeto.getTime() - desplazamiento * 60000); // Convertir la hora local a UTC
-        const fecha2ISO = fecha2EnUTC.toISOString(); // Obtener la representación en formato ISO
-
-        console.log(elemento);
-        console.log(elemento2);
-        console.log(vali);
-        console.log(fecha2ISO);
-        console.log(Userid.id_usuario);
-        console.log(ubicacionDetallada.value);
+        const fecha2Objeto = new Date(fecha2);
+        const desplazamiento = fecha2Objeto.getTimezoneOffset(); 
+        const fecha2EnUTC = new Date(fecha2Objeto.getTime() - desplazamiento * 60000); 
+        const fecha2ISO = fecha2EnUTC.toISOString(); 
 
         fetch('https://cemexapi20240515142245.azurewebsites.net/api/Cat_Aditivos', {
           method: 'POST',
@@ -224,18 +214,18 @@ const peticiones = () => {
         })
           .then(response => {
             if (!response.ok) {
-              throw new Error('Error en la solicitud'); // Manejo de errores si la solicitud falla
+              throw new Error('Error en la solicitud');
             }
             alert("Almacenado correctamente en la base de datos");
           })
           .then(data => {
-            console.log('Respuesta del servidor:', data); // Hace algo con la respuesta exitosa
+            console.log('Respuesta del servidor:', data); 
           })
           .catch(error => {
-            console.error('Error en la solicitud:', error); // Maneja errores de red o de otro tipo
+            alert('Error en la solicitud:', error); 
           });
       } catch (error) {
-        console.error('Error en el fetch:', error); // Maneja errores generados al hacer el fetch
+        alert('Error en la conexion a bd:', error); 
       }
     }
   }
