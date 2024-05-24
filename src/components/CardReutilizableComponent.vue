@@ -12,8 +12,8 @@
         ></ion-icon>
         {{ textUno }}
       </p>
-      <br>
-      <p class="inline-content" @click="redirectRutaTwo">
+      <br v-if="textDos != null">
+      <p v-if="textDos != null" class="inline-content" @click="redirectRutaTwo">
         <ion-icon
           :icon="IconoDos"
           color="primary"
