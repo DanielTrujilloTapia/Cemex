@@ -1,6 +1,6 @@
 <template>
     <ion-page>
-      <toolbar-reutilizable-component :title="'Aditivos'" :BackPath="'/tabs/tab1'" />
+      <toolbar-reutilizable-component :title="'Aditivos'" :Icono="arrowBackOutline" :BackPath="'/tabs/tab1'" />
       <ion-content>
         <ion-card>
           <ion-grid>
