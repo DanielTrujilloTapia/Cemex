@@ -2,6 +2,9 @@
   <ion-page>
     <toolbar-reutilizable-component :title="'Usuarios'"/>
     <ion-content>
+      <ion-refresher slot="fixed" @ionRefresh="handleRefresh">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
       <ion-card>
         <ion-grid>
           <ion-row>
@@ -74,7 +77,7 @@
 </template>
 
 <script>
-import { IonPage, IonContent, IonCard, IonGrid, IonRow, IonCol, IonInput, IonSelect, IonSelectOption, IonIcon, IonButton } from '@ionic/vue';
+import { IonPage, IonContent, IonCard, IonGrid, IonRow, IonCol, IonInput, IonSelect, IonSelectOption, IonIcon, IonButton, IonRefresher, IonRefresherContent, } from '@ionic/vue';
 import { createOutline, trashOutline, chevronBackOutline, chevronForwardOutline, personAddOutline} from 'ionicons/icons';
 import ToolbarReutilizableComponent from '../components/ToolbarReutilizableComponent.vue';
 
@@ -93,6 +96,8 @@ export default {
     IonSelectOption,
     IonIcon,
     IonButton,
+    IonRefresher,
+    IonRefresherContent,
     ToolbarReutilizableComponent
   },
   setup() {
@@ -205,8 +210,11 @@ export default {
       } catch (error) {
         console.error("Error al eliminar el usuario:", error);
       }
+    },
 
-      
+    async handleRefresh(event) {
+      await this.ConsultasDatos();
+      event.target.complete();
     },
 
   },
