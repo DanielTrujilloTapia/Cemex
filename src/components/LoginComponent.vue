@@ -73,13 +73,27 @@
       }
 
       if (userToLogin.contrasena === this.password) {
-        localStorage.setItem('User-login', JSON.stringify(userToLogin)); 
-        this.loading = false;
-        alert('Inicio de sesión exitoso');
-        this.$router.push("/tabs");
-      } else {
+        if(userToLogin.idusucatestado === 1){
+          localStorage.setItem('User-login', JSON.stringify(userToLogin)); 
+          this.loading = false;
+          alert('Inicio de sesión exitoso');
+          this.$router.push("/tabs");
+        }
+        
+        if(userToLogin.idusucatestado === 2){
+          alert('La cuenta esta Inactiva comuniquese con el Administrador');
+          this.loading = false;
+        }
+        
+        if(userToLogin.idusucatestado === 3){
+          alert('La cuenta esta Suspendida comuniquese con el Administrador');
+          this.loading = false;
+      } 
+      
+    }else {
         throw new Error('Contraseña incorrecta');
       }
+
     } catch (error) {
       this.loading = false;
       alert(('Error al iniciar sesión:', error.message));
