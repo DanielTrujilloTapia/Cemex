@@ -183,15 +183,9 @@ export default {
 .separation{
     margin-top: 50px;
 }
-
-.image {
-    width: 10%;
-}
-
 .edit {
     margin-top: 25px;
     font-size: 1.5em;
-    text-align: left;
 }
 .spacing{
     margin-bottom: 25px;

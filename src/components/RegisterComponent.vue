@@ -63,10 +63,7 @@ export default {
     methods: {
         async register() {
             if (this.username !== '' && this.password !== '' && this.selectedState !== '' && this.selectedType !== '') {
-                // if(this.username.length> 8  && this.password.length> 8){
-                //     alert('El usuario y contraseña deben tener maximo 8 caracteres');
-                //     return
-                // }
+
                 try {
             const checkUser = await fetch('https://cemexapi20240515142245.azurewebsites.net/api/Usu_Usuarios?nom_usuario=${this.username}');
             const existingUsers = await checkUser.json();
@@ -82,7 +79,6 @@ export default {
                         headers: {'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
-                            id_usuario: 0,
                             nom_usuario: this.username,
                             contrasena: this.password,
                             idusucatestado: parseInt(this.selectedState),
