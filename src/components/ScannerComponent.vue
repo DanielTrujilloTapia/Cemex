@@ -1,9 +1,7 @@
 <template>
   <ion-page>
     <ion-header>
-      <ion-toolbar>
-        <ion-title>Escanear aditivos</ion-title>
-      </ion-toolbar>
+      <toolbar-reutilizable-component :title="'Escanear aditivos'"/>
     </ion-header>
     <ion-content>
       <ion-card>
@@ -90,9 +88,10 @@
 
 <script setup>
 import { ref} from 'vue';
-import { IonPage, IonContent, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonImg, IonFab, IonFabButton, IonHeader, IonToolbar, IonTitle, IonLabel, IonModal,IonIcon } from '@ionic/vue';
+import { IonPage, IonContent, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonImg, IonFab, IonFabButton, IonHeader, IonLabel, IonModal,IonIcon } from '@ionic/vue';
 import { QrcodeStream } from 'vue-qrcode-reader';
 import {qrCodeOutline} from 'ionicons/icons';
+import ToolbarReutilizableComponent from '../components/ToolbarReutilizableComponent.vue'
 
 const qrCodes = ref({ array1: [], array2: [] });
 const dialogOpen = ref(false);
