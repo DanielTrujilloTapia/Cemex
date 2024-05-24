@@ -1,7 +1,9 @@
 <template>
     <ion-page>
-      <toolbar-reutilizable-component :title="'Aditivos'" :Icono="arrowBackOutline" :BackPath="'/tabs/tab1'" />
       <ion-content>
+        <ion-refresher slot="fixed" @ionRefresh="handleRefresh">
+          <ion-refresher-content></ion-refresher-content>
+        </ion-refresher>
         <ion-card>
           <ion-grid>
             <ion-row>
@@ -17,7 +19,7 @@
                 <ion-input placeholder="Vaciado" v-model="searchVaciado"></ion-input>
               </ion-col>
               <ion-col>
-                <ion-input type="date" placeholder="Fecha" v-model="searchDate"></ion-input>
+                <ion-input  type="date" placeholder="Fecha" v-model="searchDate"></ion-input>
               </ion-col>
             </ion-row>
             <ion-row>
@@ -66,7 +68,6 @@
   <script>
   import { IonPage, IonContent, IonCard, IonGrid, IonCol, IonRow, IonIcon, IonInput } from '@ionic/vue';
   import { ScreenOrientation } from '@capacitor/screen-orientation';
-  import ToolbarReutilizableComponent from './ToolbarReutilizableComponent.vue';
   import { createOutline, trashOutline, chevronBackOutline, chevronForwardOutline, arrowBackOutline} from 'ionicons/icons';
   
   export default {
@@ -80,7 +81,6 @@
       IonRow,
       IonIcon,
       IonInput,
-      ToolbarReutilizableComponent
     },
     data (){
         return {
@@ -108,7 +108,6 @@
                 const responseAditivos = await fetch('https://cemexapi20240515142245.azurewebsites.net/api/Cat_Aditivos');
                 this.aditivosTabla = await responseAditivos.json();
                 console.log("Consulta exitosa de aditivos");
-                console.log(this.aditivosTabla);
             } catch (error) {
                 console.error("Error en la consulta de los Aditivos:", error);
             }
@@ -117,7 +116,6 @@
                 const responseUsuarios = await fetch('https://cemexapi20240515142245.azurewebsites.net/api/Usu_Usuarios');
                 this.usuarioTabla = await responseUsuarios.json();
                 console.log("Consulta exitosa de usuarios");
-                console.log(this.usuarioTabla);
             } catch (error) {
                 console.error("Error en la consulta de Usuarios:", error);
             }
@@ -139,7 +137,11 @@
           this.currentPage--;
         }
       },
-    
+
+      async handleRefresh(event) {
+        await this.ConsultarAditivosVaciados();
+        event.target.complete();  
+      },
     },
     computed: {
       
