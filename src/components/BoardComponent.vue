@@ -12,8 +12,8 @@
               <h3>Usuarios {{searchType}}</h3>
             </ion-col>
             <ion-col size="5" class="center-icon-addUser">
-              <ion-button @click.prevent="redirectRegister">
-                <ion-icon class="icon" :icon="personAddOutline"></ion-icon>
+              <ion-button @click.prevent="redirectRegister" fill="outline">
+                <ion-icon :icon="personAddOutline"></ion-icon>
                 usuario
               </ion-button>
             </ion-col>
@@ -72,12 +72,27 @@
           </ion-col>
         </ion-row>
       </ion-card>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Funcionamiento de Iconos</ion-card-title>
+          <ion-card-subtitle>Recuerda recargar la tabla despues de un cambio</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <p><ion-icon :icon="createOutline" color="primary" style="margin-right: 5px;"></ion-icon>Permite editar los datos de un usuario al dar un toque en el Icono de editar</p>
+          <br>
+          <p><ion-icon :icon="trashOutline" color="danger" style="margin-right: 5px;"></ion-icon>Con solo un toque nos permite eliminar a un usuario permanentemente</p>
+          <br>
+          <p><ion-icon :icon="chevronBackOutline" color="primary" style="margin-right: 5px;"></ion-icon>Permite retroceder en el paginado</p>
+          <br>
+          <p><ion-icon :icon="chevronForwardOutline" color="primary" style="margin-right: 5px;"></ion-icon>Permite avanzar en el paginado</p>
+        </ion-card-content>
+      </ion-card>
     </ion-content>
   </ion-page>
 </template>
 
 <script>
-import { IonPage, IonContent, IonCard, IonGrid, IonRow, IonCol, IonInput, IonSelect, IonSelectOption, IonIcon, IonButton, IonRefresher, IonRefresherContent, } from '@ionic/vue';
+import { IonPage, IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonGrid, IonRow, IonCol, IonInput, IonSelect, IonSelectOption, IonIcon, IonButton, IonRefresher, IonRefresherContent, } from '@ionic/vue';
 import { createOutline, trashOutline, chevronBackOutline, chevronForwardOutline, personAddOutline} from 'ionicons/icons';
 import ToolbarReutilizableComponent from '../components/ToolbarReutilizableComponent.vue';
 
@@ -88,6 +103,10 @@ export default {
     IonPage,
     IonContent,
     IonCard,
+    IonCardHeader,
+    IonCardTitle,
+    IonCardSubtitle,
+    IonCardContent,
     IonGrid,
     IonRow,
     IonCol,
@@ -98,7 +117,7 @@ export default {
     IonButton,
     IonRefresher,
     IonRefresherContent,
-    ToolbarReutilizableComponent
+    ToolbarReutilizableComponent,
   },
   setup() {
     
@@ -214,7 +233,7 @@ export default {
 
     async handleRefresh(event) {
       await this.ConsultasDatos();
-      event.target.complete();
+      event.target.complete();  
     },
 
   },
@@ -254,12 +273,6 @@ export default {
   justify-content: center;
   align-items: center;
 }
-
-.icon {
-  width: 15px;
-  height: 15px; 
-  margin-right: 5px;
-} 
 
 .pagination-text {
   display: flex;
