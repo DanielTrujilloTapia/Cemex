@@ -7,6 +7,8 @@
 import HomeAdComponent from '../components/HomeADComponent.vue';
 import HomeEmpOpeComponent from '../components/HomeEMP_OPEComponent.vue';
 export default {
+     name: 'HomePage',
+     inheritAttrs: false,
     components: {
       HomeAdComponent,
       HomeEmpOpeComponent
