@@ -1,6 +1,6 @@
 <template>
   <ion-page>
-    <toolbar-reutilizable-component :title="'Usuarios'"/>
+    <toolbar-reutilizable-component :title="'Administreacion de usuarios'" :Icono="arrowBackOutline" :BackPath="'/tabs/tab1'"/>
     <ion-content>
       <ion-refresher slot="fixed" @ionRefresh="handleRefresh">
         <ion-refresher-content></ion-refresher-content>
@@ -93,7 +93,7 @@
 
 <script>
 import { IonPage, IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonGrid, IonRow, IonCol, IonInput, IonSelect, IonSelectOption, IonIcon, IonButton, IonRefresher, IonRefresherContent, } from '@ionic/vue';
-import { createOutline, trashOutline, chevronBackOutline, chevronForwardOutline, personAddOutline} from 'ionicons/icons';
+import { createOutline, trashOutline, chevronBackOutline, chevronForwardOutline, personAddOutline, arrowBackOutline} from 'ionicons/icons';
 import ToolbarReutilizableComponent from '../components/ToolbarReutilizableComponent.vue';
 
 import { useRouter } from 'vue-router';
@@ -140,7 +140,8 @@ export default {
       chevronBackOutline,
       personAddOutline,
       redirectRegister,
-      handleEditClick
+      handleEditClick,
+      arrowBackOutline
     };
   },
   data() {
