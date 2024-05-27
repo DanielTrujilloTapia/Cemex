@@ -51,7 +51,6 @@ export default {
         IonItem,
         IonList,
         IonContent,
-        Ion
     },
     setup() {
         return {
