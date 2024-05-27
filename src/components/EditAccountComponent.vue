@@ -32,7 +32,7 @@
             </div>
             
             <div class="Button-container">
-                <ion-button class="button-space" @click.prevent="" fill="outline"  color="danger">CANCELAR</ion-button>
+                <ion-button class="button-space" @click.prevent="handleButtonCancel" fill="outline"  color="danger">CANCELAR</ion-button>
                 <ion-button class="button-space" @click.prevent="UpdateUser" fill="solid" color="primary">GUARDAR</ion-button>
             </div>
         </div>
@@ -77,6 +77,7 @@ export default {
         const redirectBoardUsers = () => {
             router.push('/board');
         }
+        
         return {
             redirectBoardUsers
         };
@@ -147,6 +148,18 @@ export default {
                 }
             } catch (error) {
                 alert((error));
+            }
+        },
+
+        async handleButtonCancel(){
+            localStorage.removeItem('id-user-edit');
+            this.redirectBoardUsers();
+        }
+    },
+    watch: {
+        '$route'(to) {
+            if (to.path === '/editaccount') {
+                this.UserData();
             }
         }
     }
