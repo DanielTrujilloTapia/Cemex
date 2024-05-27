@@ -3,17 +3,19 @@
       <toolbar-reutilizable-component :title="'Cemex'"/>
       <ion-content>
         
-        <ion-card style="height: 50%;">
-          <ion-card-header>
+        <ion-card>
+          <ion-card-header class="Center-Logo-Cemex">
               <ion-card-title>Bienvenido administrador {{ UserName }}  </ion-card-title>
+              <br>
+              <ion-card-subtitle>Nos alegra verte, ¿Qué le gustaría hacer hoy?</ion-card-subtitle>
           </ion-card-header>
           
           <ion-card-content>
-            <ion-card-subtitle>Nos alegra verte. ¿Qué le gustaría hacer hoy?</ion-card-subtitle>
+            <div class="Center-Logo-Cemex">
+              <ion-img src="/Cemex_log.png" style="max-width: 300px; height: auto; margin-bottom: 10px;"></ion-img>
+            </div>
 
-            <ion-img src="/Cemex_log.png" style="max-width: 250px; height: auto; margin-bottom: 10px;"></ion-img>
-            
-            <p style="font-size: 16px; margin-top: 10px;">Elija una de las opciones a continuación para comenzar:</p>
+              <p style="font-size: 16px; margin-top: 10px; text-align: center; ">Recuerda un gran poder con lleva una gran responsabilidad</p>
           </ion-card-content>
         </ion-card>
 
@@ -95,4 +97,14 @@
 
   }
   </script>
+
+<style>
+
+.Center-Logo-Cemex{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+</style>
   

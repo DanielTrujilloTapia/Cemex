@@ -30,8 +30,11 @@
                     </ion-select>
                 </ion-item>
             </div>
-
-            <ion-button @click.prevent="UpdateUser" fill="solid" style="margin-top:50px; margin-bottom:50px">Editar</ion-button>
+            
+            <div class="Button-container">
+                <ion-button class="button-space" @click.prevent="" fill="outline"  color="danger">CANCELAR</ion-button>
+                <ion-button class="button-space" @click.prevent="UpdateUser" fill="solid" color="primary">GUARDAR</ion-button>
+            </div>
         </div>
     </ion-content>
     </ion-page>
@@ -200,5 +203,14 @@ export default {
     right: 0px;
     top: 50%;
     transform: translateY(-50%);
+}
+
+
+.Button-container {
+    display: flex;
+}
+
+.button-space {
+    margin: 50px 15px;
 }
 </style>
