@@ -56,7 +56,8 @@
             <ion-col class="pagination-text">{{ usuario.estadoUsuario ? usuario.estadoUsuario.nom_estado : 'N/A' }}</ion-col>
             <ion-col class="pagination-text">
               <ion-icon :icon="createOutline" class="Icon" color="primary" @click.prevent="handleEditClick(usuario.id_usuario), redirectEditAccount"></ion-icon>
-              <ion-icon :icon="trashOutline" class="Icon" color="danger" @click.prevent="DeleteGetId(usuario.id_usuario)"></ion-icon>
+              <ion-icon :icon="trashOutline" class="Icon" color="danger" @click.prevent="openalert(usuario.id_usuario)"></ion-icon>
+              <ion-alert :is-open="deletealert" class="custom-alert" header="Estás seguro de eliminar este usuario?" :buttons="alertButtons"></ion-alert>
             </ion-col>
           </ion-row>
         </ion-grid>
@@ -92,7 +93,7 @@
 </template>
 
 <script>
-import { IonPage, IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonGrid, IonRow, IonCol, IonInput, IonSelect, IonSelectOption, IonIcon, IonButton, IonRefresher, IonRefresherContent, } from '@ionic/vue';
+import { IonPage, IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonGrid, IonRow, IonCol, IonInput, IonSelect, IonSelectOption, IonIcon, IonButton, IonRefresher, IonRefresherContent,IonAlert } from '@ionic/vue';
 import { createOutline, trashOutline, chevronBackOutline, chevronForwardOutline, personAddOutline, arrowBackOutline} from 'ionicons/icons';
 import ToolbarReutilizableComponent from '../components/ToolbarReutilizableComponent.vue';
 
@@ -118,8 +119,9 @@ export default {
     IonRefresher,
     IonRefresherContent,
     ToolbarReutilizableComponent,
+    IonAlert
   },
-  setup() {
+  setup(){
     
       const router = useRouter();
       
@@ -141,7 +143,7 @@ export default {
       personAddOutline,
       redirectRegister,
       handleEditClick,
-      arrowBackOutline
+      arrowBackOutline,
     };
   },
   data() {
@@ -154,6 +156,8 @@ export default {
       searchState: '',
       currentPage: 1,
       itemsPerPage: 5,
+      deletealert: false,
+      id:'',
     };
   },
   computed: {
@@ -172,9 +176,32 @@ export default {
     },
     totalPages() {
       return Math.ceil(this.filteredUsers.length / this.itemsPerPage);
+    },
+    alertButtons() {
+      return [
+        {
+          text: 'No',
+          handler: this.resetDeleteAlert
+        },
+        {
+          text: 'Si',
+          handler: async () => {
+            await this.DeleteGetId(this.id);
+          }
+        },
+      ];
     }
   },
+  
   methods: {
+      openalert(id_user){
+        this.deletealert = true;
+        this.id = id_user;
+      },
+      resetDeleteAlert() {
+        this.deletealert= false;
+      },
+
     async ConsultasDatos() {
       try {
         const responseUsuarios = await fetch('https://cemexapi20240515142245.azurewebsites.net/api/Usu_Usuarios');
@@ -218,17 +245,17 @@ export default {
       }
     },
     
-    
-
     async DeleteGetId(id_user) {
       try {
         await fetch(`https://cemexapi20240515142245.azurewebsites.net/api/Usu_Usuarios?id=${id_user}`, {
         method: 'DELETE'
         });
         console.log('Usuario eliminado correctamente', id_user)
+        this.deletealert= false;
         this.ConsultasDatos();
       } catch (error) {
         console.error("Error al eliminar el usuario:", error);
+        this.deletealert= false;
       }
     },
 
@@ -240,6 +267,13 @@ export default {
   },
   created() {
     this.ConsultasDatos();
+  },
+  watch: {
+    '$route'(to) {
+      if (to.path === '/board') {
+        this.ConsultasDatos();
+      }
+    }
   }
 };
 </script>
