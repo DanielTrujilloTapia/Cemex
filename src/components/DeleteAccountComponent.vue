@@ -22,7 +22,10 @@
           <ion-label>Indícanos por qué quieres eliminar tu cuenta (opcional)</ion-label>
           <ion-input label-placement="floating" fill="outline" class="spacing-delete" rows="4"></ion-input>
         </div>
-        <ion-button @click="deleteAccount" fill="solid" style="margin-top:30px;">Eliminar</ion-button>
+        <div style="display: flex;">
+          <ion-button class="SpaceButton" @click="handleButtonCancel" fill="outline" color="danger">Cancelar</ion-button>
+          <ion-button class="SpaceButton" @click="deleteAccount" fill="solid" color="primary">Eliminar</ion-button>
+        </div>
       </div>
       <ion-alert
         :is-open="showAlert"
@@ -37,6 +40,7 @@
 
 <script>
 import { IonButton, IonContent, IonImg, IonInputPasswordToggle, IonLabel, IonPage, IonInput, IonAlert } from '@ionic/vue';
+import { useRouter } from 'vue-router';
 
 export default {
   name: 'DeleteAccountComponent',
@@ -59,6 +63,16 @@ export default {
       alertMessage: '',
       alertButtons: []
     };
+  },
+  setup() {
+    const router = useRouter();
+
+    const handleButtonCancel = () => {
+      router.push('/tabs/tab3');
+    }
+    return { 
+      handleButtonCancel
+    }
   },
   methods: {
     async validateUser() {
@@ -186,5 +200,9 @@ export default {
 }
 .spacing ion-label {
     margin-bottom: 10px;
+}
+
+.SpaceButton {
+  margin: 40px 15px ;
 }
 </style>
