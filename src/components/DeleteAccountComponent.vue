@@ -4,7 +4,7 @@
       <div class="container-header-delete">
         <div class="header-delete">
           <ion-img src="/delete-accunt.png" class="header-image-delete"></ion-img>
-          <ion-label class="edit"><b>ELIMINAR CUENTA</b></ion-label>
+          <ion-label><b>ELIMINAR CUENTA</b></ion-label>
         </div>
       </div>
       <div class="container-delete">
@@ -169,6 +169,8 @@ export default {
 .header-delete {
     display: flex;
     align-items: center;
+    margin-top: 25px;
+    font-size: 1.5rem;
 }
 .header-image-delete {
     width: 50px;
