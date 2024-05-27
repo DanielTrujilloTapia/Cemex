@@ -44,8 +44,8 @@
                 <ion-col class="pagination-text">{{ aditivo.fecha }}</ion-col>
                 <ion-col class="pagination-text">{{ aditivo.localizacion }}</ion-col>
                 <ion-col class="pagination-text">
-                  <ion-icon :icon="createOutline" class="Icon" color="primary"></ion-icon>
-                  <ion-icon :icon="trashOutline" class="Icon" color="danger"></ion-icon>
+                  <ion-icon :icon="trashOutline" class="Icon" color="danger" @click.prevent="openalert(aditivo.id_aditivos)"></ion-icon>
+                  <ion-alert :is-open="deletealert" class="custom-alert" header="Estás seguro de eliminar este registro?" :buttons="alertButtons"></ion-alert>
                 </ion-col>
             </ion-row>
             <ion-row class="pagination-row">
@@ -91,6 +91,8 @@
             searchVaciado:'',
             currentPage: 1,
             itemsPerPage: 5,
+            deletealert: false,
+            id:'',
         }
     },
     setup() {
@@ -142,6 +144,27 @@
         await this.ConsultarAditivosVaciados();
         event.target.complete();  
       },
+      openalert(id_user){
+        this.deletealert = true;
+        this.id = id_user;
+      },
+      resetDeleteAlert() {
+        this.deletealert= false;
+      },
+
+      async DeleteGetId(id_aditivo) {
+      try {
+        await fetch(`https://cemexapi20240515142245.azurewebsites.net/api/Cat_Aditivos?id=${id_aditivo}`, {
+        method: 'DELETE'
+        });
+        console.log('Aditivo eliminado correctamente', id_aditivo)
+        this.deletealert= false;
+        this.ConsultarAditivosVaciados();
+      } catch (error) {
+        console.error("Error al eliminar el Aditivo:", error);
+        this.deletealert= false;
+      }
+    },
     },
     computed: {
       
@@ -162,7 +185,21 @@
     
       totalPages() {
         return Math.ceil(this.filteredAditivos.length / this.itemsPerPage);
-      }
+      },
+      alertButtons() {
+      return [
+        {
+          text: 'No',
+          handler: this.resetDeleteAlert
+        },
+        {
+          text: 'Si',
+          handler: async () => {
+            await this.DeleteGetId(this.id);
+          }
+        },
+      ];
+    }
 
     },
     created() {
@@ -194,6 +231,14 @@
         console.error("Error unlocking orientation:", err);
       }
     },
+    watch: {
+    '$route'(to) {
+      if (to.path === '/boardaditivos') {
+        this.ConsultasDatos();
+      }
+    }
+  }
+    //boardaditivos
   };
   </script>
   
