@@ -4,72 +4,91 @@
       <toolbar-reutilizable-component :title="'Escanear aditivos'"/>
     </ion-header>
     <ion-content>
+      
       <ion-card>
         <ion-card-header>
-          <div>
-            <p>Para comenzar a realizar las validaciones de los códigos QR has click en el boton scanner</p>
-          </div>
+          <p class="text-center">Para comenzar a realizar las validaciones de los códigos QR has click en el boton flotante del scanner que se encuentra en la parte inferior derecha</p>
         </ion-card-header>
       </ion-card>
+      
       <ion-card>
         <ion-card-header>
-          <div class="cont-center">
-            <div class="validacion">
-              <ion-card-title style="color: white; text-align: center;">Validación de códigos</ion-card-title>
-            </div>
-          </div>
+          <ion-card-title class="text-center">Validación de códigos</ion-card-title>
         </ion-card-header>
-        <ion-card-content style="height: 200px;">
-          <div style="max-height: 200px; overflow-y: auto;">
-            <table style="width: 100%;">
-              <thead>
-                <tr>
-                  <th style="background: none;"><ion-img src="/camion.png" class="iconos"></ion-img></th>
-                  <th style="background: none;"><ion-img src="/tanque.png" class="iconos"></ion-img></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="index in Math.max(qrCodes.array1.length, qrCodes.array2.length)" :key="index - 1" :class="{ 'highlight': qrCodes.array2[index - 1] !== qrCodes.array1[index - 1], 'highlight-green': qrCodes.array2[index - 1] === qrCodes.array1[index - 1]}">
-                <td class="center-text">
-                    <p style="border-radius: 10px">{{ qrCodes.array1[index - 1] || '' }}</p>
-                </td>
-                <td class="center-text">{{ qrCodes.array2[index - 1] || '' }}</td>
-            </tr>
-              </tbody>
-            </table>
-          </div>
+        
+        <ion-card-content style="height: 320px;">
+          <ion-grid>
+
+            <ion-row class="custom-border-bottom">
+              <ion-col class="Center-icons">
+                <ion-icon class="size-icons" color="primary" :icon="busOutline"></ion-icon>
+              </ion-col>
+              <ion-col class="Center-icons">
+                <ion-icon class="size-icons" color="primary" :icon="archiveOutline"></ion-icon>
+              </ion-col>
+            </ion-row>
+
+            <div style="height: 220px; overflow-y: auto;">
+              <ion-row v-for="index in Math.max(qrCodes.array1.length, qrCodes.array2.length)" :key="index - 1" :class="{ 'highlight': qrCodes.array2[index - 1] !== qrCodes.array1[index - 1], 'highlight-green': qrCodes.array2[index - 1] === qrCodes.array1[index - 1]}">
+                <ion-col>{{ qrCodes.array1[index - 1] || '' }}</ion-col>
+                <ion-col>{{ qrCodes.array2[index - 1] || '' }}</ion-col>
+              </ion-row>
+            </div>
+
+            
+          </ion-grid>
+        </ion-card-content>
+        <ion-row class="custom-border-top"> 
+          <ion-col size="8" style="text-align: center;">
+            <p>Limpia la tabla de codigos QR</p>
+          </ion-col>
+          <ion-col size="4" class="Center-icons">
+            <ion-button color="danger" @click="vaciarArreglos">Limpiar</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Informacion sobre los datos </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p style="text-align: justify">Todos los datos recopilados e utilizados en la aplicación están seguros y solo pueden acceder a ellos personal administrativo</p>
         </ion-card-content>
       </ion-card>
-      <div>
-        <ion-button class="centered-button" @click="vaciarArreglos">Delete</ion-button>
-      </div>
-      <ion-card style="margin-top: 80px;">
-        <ion-card-header>
-          <div>
-            <p>
-              Todos los datos utilizados en la aplicación están seguros y solo pueden acceder a ellos personal administrativo 
-            </p>
-          </div>
-        </ion-card-header>
-      </ion-card>
     </ion-content>
+
     <div v-if="dialogOpen" class="custom-dialog">
       <div class="dialog-content">
         <h4>Selecciona la parte a escanear</h4> 
-        <div class="iconos-container">
-          <ion-img src="/camion.png" class="iconos" @click="selectArray(1)"></ion-img>
-          <ion-img src="/tanque.png" class="iconos" @click="selectArray(2)"></ion-img>
-        </div>
+        
+        <ion-grid>
+          <ion-row>
+            <ion-col class="Center-icons">
+              <ion-icon class="size-icons-after-camera" color="primary" :icon="busOutline" @click="selectArray(1)"></ion-icon>
+            </ion-col>
+            <ion-col class="Center-icons">
+              <ion-icon class="size-icons-after-camera" color="primary" :icon="archiveOutline" @click="selectArray(2)"></ion-icon>
+            </ion-col>
+          </ion-row>
+          <br>
+          <ion-row>
+            <ion-col class="Center-icons" >
+              <ion-button color="danger" class="Center-icons" @click="cancelar">CANCELAR</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
         <div>
-          <ion-button class="centered-button" @click="cancelar">Cancelar</ion-button>
+          
         </div>
       </div>
     </div>
+    
     <ion-fab horizontal="end" vertical="bottom">
-      <ion-fab-button @click="openDialog">
-        <ion-icon :icon="qrCodeOutline"></ion-icon>
+      <ion-fab-button @click="openDialog" class="Center-icons">
+        <ion-icon :icon="scanOutline"></ion-icon>
       </ion-fab-button>
-      <ion-label>Scanner</ion-label>
     </ion-fab>
     <ion-modal :is-open="cameraModalOpen" @did-dismiss="closeCameraModal">
       <ion-page class="fondo">
@@ -88,9 +107,9 @@
 
 <script setup>
 import { ref} from 'vue';
-import { IonPage, IonContent, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonImg, IonFab, IonFabButton, IonHeader, IonLabel, IonModal,IonIcon } from '@ionic/vue';
+import { IonPage, IonContent, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonFab, IonFabButton, IonHeader, IonLabel, IonModal,IonIcon, IonGrid, IonRow, IonCol} from '@ionic/vue';
 import { QrcodeStream } from 'vue-qrcode-reader';
-import {qrCodeOutline} from 'ionicons/icons';
+import {scanOutline, archiveOutline, busOutline} from 'ionicons/icons';
 import ToolbarReutilizableComponent from '../components/ToolbarReutilizableComponent.vue'
 
 const qrCodes = ref({ array1: [], array2: [] });
@@ -110,7 +129,7 @@ const onDetect = (detectedCodes) => {
   });
   localStorage.setItem('qrCodes', JSON.stringify(qrCodes.value));
   closeCameraModal();
-  peticiones();
+ // peticiones();
 };
 
 const openDialog = () => {
@@ -259,18 +278,7 @@ const peticiones = () => {
   margin: 0 auto;
   padding-top: 20px;
 }
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-th, td {
-  border: 1px solid #ddd;
-  padding: 5px;
-  text-align: left;
-}
-th {
-  background-color: #f2f2f2;
-}
+
 .highlight {
   background-color: #FBC1C1;
   text-align: center;
@@ -281,39 +289,7 @@ th {
   text-align: center;
   color: black;
 }
-.iconos {
-  width: 40px;
-  margin: 0 auto;
-}
-.iconos-container {
-  display: flex;
-  flex-direction: row;
-}
-.center-text {
-  text-align: center;
-}
-.imagenQR{
-  width: 300px;
-  margin: 20px auto 0;
-}
-.centered-button {
-  display: block;
-  margin: 20px auto 0;
-  width: 100px;
-}
-.content{
-  margin-top: 100px;
-}
-.validacion{
-  border-radius: 10px;
-  background-color: #DF343D;
-  width: 230px;
-}
-.cont-center{
-  display: flex;
-  justify-content: center;
-  align-content: center;
-}
+
 .borde{
   margin: 3px;
   border-width: 6px;
@@ -336,4 +312,34 @@ th {
     margin-top: 100px;
     text-align: center;
 }
+
+.text-center {
+  text-align: center;
+  
+}
+.Center-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.size-icons {
+  width: 30px;
+  height: 30px;
+}
+
+.size-icons-after-camera {
+  width: 40px;
+  height: 40px;
+}
+
+.custom-border-bottom {
+  border-bottom: 1px solid #b3a6a6;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+.custom-border-top {
+  border-top: 1px solid #b3a6a6;
+}
+
 </style>
