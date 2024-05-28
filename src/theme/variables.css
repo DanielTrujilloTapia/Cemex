@@ -2,13 +2,12 @@
 http://ionicframework.com/docs/theming/ */
 
 :root {
-  --gradient-light: linear-gradient(to bottom, #BDD4DB, #ffffff);
+  /* Degradado utilizado en configuracion: modo claro */
+  --gradient-light: linear-gradient(to bottom, #99cede, #ffffff);
+
   --ion-background-color: #ffffff;
   --ion-text-color: #000000;
-  --ion-list-backgroud: #ffffff;
-  --ion-list-color:#000000;
 
-  /* Colores */
   --ion-color-primary: #2a79c3;
   --ion-color-primary-rgb: 56,128,255;
   --ion-color-primary-contrast: #ffffff;
@@ -23,13 +22,11 @@ http://ionicframework.com/docs/theming/ */
 /* Modo oscuro */
 @media (prefers-color-scheme: dark) {
   :root {
+     /* Degradado utilizado en configuracion: modo oscuro */
+    --gradient-dark: linear-gradient(to bottom, #134c5d, #121212);
 
-    --gradient-dark: linear-gradient(to bottom, #BDD4DB, #1e1e1e);
-
-    --ion-background-color: #1e1e1e;
+    --ion-background-color: #121212;
     --ion-text-color: #ffffff;
-    --ion-list-background: #000000;
-    --ion-list-color: #ffffff;
 
     --ion-color-primary: #2a79c3;
     --ion-color-primary-rgb: 235,68,90;
@@ -41,10 +38,6 @@ http://ionicframework.com/docs/theming/ */
     --ion-color-red-contrast: #ffffff;
     --ion-color-red-contrast-rgb: 255,255,255;
   }
-}
-
-ion-button {
-  border-radius: 8px;
 }
 
 ion-button[color="red"] {
