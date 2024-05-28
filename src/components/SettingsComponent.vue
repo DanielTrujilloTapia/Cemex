@@ -1,44 +1,44 @@
 <template>
     <ion-page>
         <ion-content>
-        <div>
-            <div class="container-set">
-                <div class="header-set">
-                    <ion-img src="engranaje.png" class="header-image-set"></ion-img>
-                    <ion-label class="text-set"><b>CONFIGURACIÓN</b></ion-label>
+            <div>
+                <div class="container-set">
+                    <div class="header-set">
+                        <ion-img src="engranaje.png" class="header-image-set"></ion-img>
+                        <ion-label class="text-set"><b>CONFIGURACIÓN</b></ion-label>
+                    </div>
+                </div>
+                <div class="container-text-set">
+                    <ion-icon :icon="personOutline" class="icon-account"></ion-icon>
+                    <ion-label><b>Cuenta</b></ion-label>
+                </div>
+                <div class="divider-container">
+                    <div class="divider"></div> 
+                </div>
+                <div>
+                    <ion-item aria-hidden="true" :icon="createOutline" routerLink="/editprofile" lines="none">
+                        <ion-icon :icon="createOutline" class="icon-style"></ion-icon>
+                        <ion-label>Editar Perfil</ion-label>
+                        <ion-icon slot="end" :icon="chevronForwardOutline"></ion-icon>
+                    </ion-item>
+                    <ion-item aria-hidden="true" routerLink="/changepassword" lines="none">
+                        <ion-icon :icon="lockOpenOutline" class="icon-style"></ion-icon>
+                        <ion-label>Cambiar Contraseña</ion-label>
+                        <ion-icon slot="end" :icon="chevronForwardOutline"></ion-icon>
+                    </ion-item>
+                    <ion-item aria-hidden="true" routerLink="/deleteaccount" lines="none">
+                        <ion-icon :icon="closeCircleOutline" class="icon-style"></ion-icon>
+                        <ion-label>Eliminar cuenta</ion-label>
+                        <ion-icon slot="end" :icon="chevronForwardOutline"></ion-icon>
+                    </ion-item>
                 </div>
             </div>
-            <div class="container-text-set">
-                <ion-icon :icon="personOutline" class="icon-account"></ion-icon>
-                <ion-label><b>Cuenta</b></ion-label>
-            </div>
-            <div class="divider-container">
-                <div class="divider"></div> 
-            </div>
-            <ion-list lines="none">
-                <ion-item aria-hidden="true" :icon="createOutline" routerLink="/editprofile">
-                    <ion-icon :icon="createOutline" class="icon-style"></ion-icon>
-                    <ion-label>Editar Perfil</ion-label>
-                    <ion-icon slot="end" :icon="chevronForwardOutline"></ion-icon>
-                </ion-item>
-                <ion-item aria-hidden="true" routerLink="/changepassword">
-                    <ion-icon :icon="lockOpenOutline" class="icon-style"></ion-icon>
-                    <ion-label>Cambiar Contraseña</ion-label>
-                    <ion-icon slot="end" :icon="chevronForwardOutline"></ion-icon>
-                </ion-item>
-                <ion-item aria-hidden="true" routerLink="/deleteaccount">
-                    <ion-icon :icon="closeCircleOutline" class="icon-style"></ion-icon>
-                    <ion-label>Eliminar cuenta</ion-label>
-                    <ion-icon slot="end" :icon="chevronForwardOutline"></ion-icon>
-                </ion-item>
-            </ion-list>
-        </div>
-    </ion-content>
+        </ion-content>
     </ion-page>
 </template>
 
 <script>
-import { IonPage, IonImg, IonLabel, IonIcon, IonItem, IonList,IonContent } from '@ionic/vue';
+import { IonPage, IonImg, IonLabel, IonIcon, IonItem, IonList, IonContent } from '@ionic/vue';
 import { lockOpenOutline, personOutline, createOutline, closeCircleOutline, chevronForwardOutline } from 'ionicons/icons';
 
 export default {
@@ -66,14 +66,20 @@ export default {
 
 <style>
 .container-set {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-end;
-    width: 100%;
-    height: 130px;
-    background: linear-gradient(to bottom, #BDD4DB, #FFFFFF);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  width: 100%;
+  height: 140px;
+  background: var(--gradient-light);
+}
+
+@media (prefers-color-scheme: dark) {
+  .container-set {
+    background: var(--gradient-dark);
+  }
 }
 
 .header-set {
@@ -127,9 +133,16 @@ export default {
     margin-bottom: 20px;
 }
 
-ion-item { 
+ion-item {
     margin-left: 35px;
     margin-right: 35px;
     margin-bottom: 20px;
+}
+
+@media (prefers-color-scheme: dark) {
+  ion-item {
+    --background: transparent;
+    --color: inherit;
+  }
 }
 </style>
