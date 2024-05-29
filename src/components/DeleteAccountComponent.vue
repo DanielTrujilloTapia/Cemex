@@ -134,7 +134,7 @@ export default {
           this.showAlertDialog('Error','No se pudo eliminar la cuenta');
         }
       } catch (error) {
-        this.showAlertDialog('Error', 'Ocurrió un error al eliminar la cuenta');
+        this.showAlertDialog('Error', 'Existe informacion aliada a esta cuenta');
       }},
     showAlertDialog(header, message) {
       this.alertHeader = header;
