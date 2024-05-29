@@ -7,6 +7,7 @@ import DeleteAccountPage from '../views/DeleteAccountPage.vue'
 import BoardPage from '../views/BoardPage.vue'
 import BoardAditivosPage from '../views/BoardAditivosPage.vue'
 import EditAccountPage from '../views/EditAccountPage.vue'
+import ChangePasswordPage from '../views/ChangePasswordPage.vue'
 
 const routes = [
   {
@@ -33,7 +34,11 @@ const routes = [
     name: 'DeleteAccount',
     component: DeleteAccountPage
   },
-
+  {
+    path: '/changepassword',
+    name: 'ChangePassword',
+    component: ChangePasswordPage
+  },
   {
     path: '/board',
     name: 'Board',
