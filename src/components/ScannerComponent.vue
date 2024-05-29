@@ -129,7 +129,7 @@ const onDetect = (detectedCodes) => {
   });
   localStorage.setItem('qrCodes', JSON.stringify(qrCodes.value));
   closeCameraModal();
- // peticiones();
+  peticiones();
 };
 
 const openDialog = () => {
