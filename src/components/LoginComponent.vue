@@ -35,7 +35,7 @@
   
   <script >
   import {IonPage,IonInput, IonButton, IonImg,IonContent, IonLabel, IonInputPasswordToggle, IonLoading} from '@ionic/vue';
-  
+  import { Geolocation } from '@ionic-native/geolocation';
   
   export default {
     name:'LoginComponente',
@@ -58,6 +58,38 @@
     };
   },
    methods:{
+    async checkLocationEnabled() {
+      try {
+        // Solicitar permisos de ubicación
+        await this.requestLocationPermission();
+
+        // Intentar obtener la ubicación actual
+        const position = await Geolocation.getCurrentPosition();
+        alert("Debes tener tu ubicacion activada");
+      } catch (error) {
+        if (error.code === error.PERMISSION_DENIED) {
+          console.error('Permiso denegado', error);
+          this.promptEnableLocation();
+        } else if (error.code === error.POSITION_UNAVAILABLE) {
+          console.error('Posición no disponible', error);
+          this.promptEnableLocation();
+        } else {
+          console.error('Error al obtener la ubicación', error);
+        }
+      }
+    },
+
+    async requestLocationPermission() {
+      try {
+        const result = await Geolocation.requestPermissions();
+        if (result !== 'granted') {
+          throw new Error('Permiso de ubicación no concedido');
+        }
+      } catch (error) {
+        console.error('Permiso de ubicación no concedido', error);
+      }
+    },
+
       async login() {
         this.loading = true; 
   if (this.username !== '' && this.password !== '') {
@@ -104,7 +136,11 @@
   }
 },
 
-}
+},
+
+created() {
+    this.checkLocationEnabled();
+  },
 }
   
   </script>
