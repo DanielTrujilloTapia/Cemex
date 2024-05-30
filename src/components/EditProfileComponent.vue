@@ -40,7 +40,6 @@
   
   <script>
   import { IonPage, IonContent, IonGrid, IonRow, IonCol, IonImg, IonButton, IonAlert , IonItem,IonIcon , alertController} from '@ionic/vue';
-  import { Camera, CameraResultType } from '@capacitor/camera';
   import {trashOutline, createOutline} from 'ionicons/icons';
 
   export default {
