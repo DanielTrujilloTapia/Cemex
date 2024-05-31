@@ -60,10 +60,6 @@
    methods:{
     async checkLocationEnabled() {
       try {
-        // Solicitar permisos de ubicación
-        await this.requestLocationPermission();
-
-        // Intentar obtener la ubicación actual
         const position = await Geolocation.getCurrentPosition();
         alert("Debes tener tu ubicacion activada");
       } catch (error) {
@@ -76,17 +72,6 @@
         } else {
           console.error('Error al obtener la ubicación', error);
         }
-      }
-    },
-
-    async requestLocationPermission() {
-      try {
-        const result = await Geolocation.requestPermissions();
-        if (result !== 'granted') {
-          throw new Error('Permiso de ubicación no concedido');
-        }
-      } catch (error) {
-        console.error('Permiso de ubicación no concedido', error);
       }
     },
 
