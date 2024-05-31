@@ -14,9 +14,9 @@
         </ion-label>
         <div class="separation-delete">
           <ion-label>Cuenta a eliminar</ion-label>
-          <ion-input v-model="inputUsername" label-placement="floating" fill="outline" class="spacing-delete" maxlength="15"></ion-input>
+          <ion-input v-model="inputUsername" label-placement="floating" fill="outline" class="spacing-delete" maxlength="10"></ion-input>
           <ion-label>Contraseña</ion-label>
-          <ion-input v-model="inputPassword" label-placement="floating" fill="outline" type="password" class="spacing-delete" maxlength="10" pattern="[a-zA-Z0-9]+">
+          <ion-input v-model="inputPassword" label-placement="floating" fill="outline" type="password" class="spacing-delete" maxlength="9" pattern="[a-zA-Z0-9]+">
             <ion-input-password-toggle slot="end"></ion-input-password-toggle>
           </ion-input>
           <ion-label>Indícanos por qué quieres eliminar tu cuenta (opcional)</ion-label>
