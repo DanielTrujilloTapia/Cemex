@@ -31,6 +31,9 @@
                         <ion-label>Eliminar cuenta</ion-label>
                         <ion-icon slot="end" :icon="chevronForwardOutline"></ion-icon>
                     </ion-item>
+                    <ion-item aria-hidden="true" routerLink="/login" lines="none">
+                        <ion-button @click="logout">Cerrar sesión</ion-button>
+                    </ion-item>
                 </div>
             </div>
         </ion-content>
@@ -38,7 +41,7 @@
 </template>
 
 <script>
-import { IonPage, IonImg, IonLabel, IonIcon, IonItem, IonList, IonContent } from '@ionic/vue';
+import { IonPage, IonImg, IonLabel, IonIcon, IonItem, IonList, IonContent, IonButton } from '@ionic/vue';
 import { lockOpenOutline, personOutline, createOutline, closeCircleOutline, chevronForwardOutline } from 'ionicons/icons';
 
 export default {
@@ -51,6 +54,7 @@ export default {
         IonItem,
         IonList,
         IonContent,
+        IonButton
     },
     setup() {
         return {
@@ -60,6 +64,23 @@ export default {
             closeCircleOutline,
             chevronForwardOutline
         };
+    },
+    methods:{
+        logout(){
+            localStorage.removeItem('User-login'); 
+        },
+        userlogin(){
+            const User = localStorage.getItem('User-login');
+            if(User){
+                console.log("estas logeado");
+            }else{
+                alert("No hay una sesion iniciada");
+                window.location.href = '/login'; 
+            }
+        }
+    },
+    created(){
+        this.userlogin();
     }
 }
 </script>

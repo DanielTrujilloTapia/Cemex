@@ -83,10 +83,12 @@
                 }
             console.log("Datos obtenidos correctamente");
           } else {
-            console.log("Vuelvaa iniciar sesion para evitar cualquier error con la sesion iniciada");
+            console.log("Vuelva iniciar sesion para evitar cualquier error con la sesion iniciada");
+            window.location.href = '/login'; 
           }   
         } catch {
           console.log("Hubo un error al obtener los datos de la sesion");
+          window.location.href = '/login'; 
         }
       }
     },
