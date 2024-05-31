@@ -31,9 +31,6 @@
                         <ion-label>Eliminar cuenta</ion-label>
                         <ion-icon slot="end" :icon="chevronForwardOutline"></ion-icon>
                     </ion-item>
-                    <ion-item aria-hidden="true" routerLink="/login" lines="none">
-                        <ion-button @click="logout">Cerrar sesión</ion-button>
-                    </ion-item>
                 </div>
             </div>
         </ion-content>
