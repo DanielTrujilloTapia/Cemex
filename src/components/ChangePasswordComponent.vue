@@ -9,20 +9,20 @@
             </div>
             <div class="container-cp">
                 <div class="separation-cp">
-                        <ion-label>Contraseña actual</ion-label>
-                        <ion-input v-model="currentPassword" @ionInput="validateCurrentPassword" label-placement="floating" fill="outline" type="password" class="spacing-cp" maxlength="10" pattern="[a-zA-Z0-9]+">
-                            <ion-input-password-toggle slot="end"></ion-input-password-toggle>
-                        </ion-input>
-                        <ion-label>Contraseña nueva</ion-label>
-                        <ion-input v-model="newPassword" @ionInput="validatePasswords" label-placement="floating" fill="outline" type="password" class="spacing-cp" maxlength="10" pattern="[a-zA-Z0-9]+">
-                            <ion-input-password-toggle slot="end"></ion-input-password-toggle>
-                        </ion-input>
-                        <ion-label>Confirmar contraseña nueva</ion-label>
-                        <ion-input v-model="confirmNewPassword" @ionInput="validatePasswords" label-placement="floating" fill="outline" type="password" class="spacing-cp" maxlength="10" pattern="[a-zA-Z0-9]+">
-                            <ion-input-password-toggle slot="end"></ion-input-password-toggle>
-                        </ion-input>
-                        <span v-if="errors.confirmNewPassword" class="error-message">{{ errors.confirmNewPassword }}</span>
-                    </div>
+                    <ion-label>Contraseña actual</ion-label>
+                    <ion-input v-model="currentPassword" label-placement="floating" fill="outline" type="password" class="spacing-cp" maxlength="10" pattern="[a-zA-Z0-9]+">
+                        <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+                    </ion-input>
+                    <ion-label>Contraseña nueva</ion-label>
+                    <ion-input v-model="newPassword" @ionInput="validatePasswords" label-placement="floating" fill="outline" type="password" class="spacing-cp" maxlength="10" pattern="[a-zA-Z0-9]+">
+                        <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+                    </ion-input>
+                    <ion-label>Confirmar contraseña nueva</ion-label>
+                    <ion-input v-model="confirmNewPassword" @ionInput="validatePasswords" label-placement="floating" fill="outline" type="password" class="spacing-cp" maxlength="10" pattern="[a-zA-Z0-9]+">
+                        <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+                    </ion-input>
+                    <span v-if="errors.confirmNewPassword" class="error-message">{{ errors.confirmNewPassword }}</span>
+                </div>
                 <div class="Button-container">
                     <ion-button @click.prevent="changePassword" fill="solid" color="primary" class="change-password-button">Cambiar</ion-button>
                 </div>
