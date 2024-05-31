@@ -10,10 +10,10 @@
         <div class="container">
             <div class="separation">
                 <ion-label>Usuario</ion-label>
-                <ion-input v-model="username" label-placement="floating" fill="outline" class="spacing" maxlength="15" :value="username"></ion-input>
+                <ion-input v-model="username" label-placement="floating" fill="outline" class="spacing" maxlength="10" :value="username"></ion-input>
                 
                 <ion-label>Contraseña</ion-label>
-                <ion-input v-model="password" label-placement="floating" fill="outline" type="password" class="spacing" maxlength="10" pattern="[a-zA-Z0-9]+">
+                <ion-input v-model="password" label-placement="floating" fill="outline" type="password" class="spacing" maxlength="9" pattern="[a-zA-Z0-9]+">
                 <ion-input-password-toggle slot="end"></ion-input-password-toggle></ion-input>
                 
                 <ion-label>Estado</ion-label>
