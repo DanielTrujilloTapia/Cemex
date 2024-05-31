@@ -199,8 +199,12 @@ export default {
             idusucattipousuario: userLogged.idusucattipousuario
           })
         });
+        
         if (response.ok) {
           this.showAlertDialog('Éxito', 'Nombre de usuario actualizado con éxito.');
+          this.originalUsername = this.edusername;
+          userLogged.nom_usuario = this.edusername;
+          localStorage.setItem('User-login', JSON.stringify(userLogged));
           this.$router.push("/tabs/tab3");
         } else {
           let errorData;
