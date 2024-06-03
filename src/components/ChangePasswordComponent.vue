@@ -80,7 +80,17 @@ export default {
             arrowBackOutline
         };
     },
+    mounted() {
+        this.clearInputsC();
+    },
     methods: {
+        clearInputsC() {
+            this.currentPassword = '';
+            this.newPassword = '';
+            this.confirmNewPassword = '';
+            this.errors.newPassword = '';
+            this.errors.confirmNewPassword = '';
+        },
         async changePassword() {
             if (this.currentPassword !== '' && this.newPassword !== '' && this.confirmNewPassword !== '') {
                 if (this.newPassword !== this.confirmNewPassword) {
@@ -112,7 +122,10 @@ export default {
                 });
 
                 if (response.ok) {
+                    userLoggedIn.contrasena = this.newPassword;
+                    localStorage.setItem('User-login',JSON.stringify(userLoggedIn));
                     this.showAlertDialog('Éxito', 'Contraseña actualizada con éxito.');
+                    this.clearInputsC();
                     this.redirectSettingsDashboard();
                 } else {
                     let errorData;
@@ -130,6 +143,7 @@ export default {
         },
         handleIconBack() {
             this.redirectSettingsDashboard();
+            this.clearInputsC();
         },
         showAlertDialog(header, message) {
             this.alertHeader = header;
