@@ -81,13 +81,13 @@
                 }else if(NameUser.idusucattipousuario==3){
                     this.TypeUser= "OPERADOR";
                 }
-            console.log("Datos obtenidos correctamente");
+           // console.log("Datos obtenidos correctamente");
           } else {
-            console.log("Vuelva iniciar sesion para evitar cualquier error con la sesion iniciada");
+            //console.log("Vuelva iniciar sesion para evitar cualquier error con la sesion iniciada");
             window.location.href = '/login'; 
           }   
         } catch {
-          console.log("Hubo un error al obtener los datos de la sesion");
+         // console.log("Hubo un error al obtener los datos de la sesion");
           window.location.href = '/login'; 
         }
       }

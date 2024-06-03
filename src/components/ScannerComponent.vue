@@ -262,9 +262,16 @@ const peticiones = () => {
   justify-content: center;
   align-items: center;
 }
+
 .dialog-content {
+  background-color: #fff;
   padding: 20px;
   border-radius: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  .dialog-content {
+    background-color: black;
+  }
 }
 .container-camara {
   display: flex;
