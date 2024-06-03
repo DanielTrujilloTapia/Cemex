@@ -263,7 +263,6 @@ const peticiones = () => {
   align-items: center;
 }
 .dialog-content {
-  background-color: #fff;
   padding: 20px;
   border-radius: 10px;
 }
