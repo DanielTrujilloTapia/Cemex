@@ -7,7 +7,7 @@
           <ion-label class="text-editpro"><b>EDIT PROFILE</b></ion-label>
         </div>
       </div>
-      <div class="container-editphoto">
+      <div class="container-editprofile">
         <ion-grid>
           <ion-row>
             <ion-col class="ion-text-center">
@@ -28,7 +28,7 @@
             </ion-col>
           </ion-row>
         </ion-grid>
-      </div>
+    
       <div class="container-data">
         <div class="separation-data">
           <ion-label>Usuario</ion-label>
@@ -39,6 +39,7 @@
       <ion-button class="spacebuttons" @click="handleButtonCancel" fill="outline" color="danger">Cancelar</ion-button>
       <ion-button class="spacebuttons" @click="saveUsername">Guardar</ion-button>
     </div>
+  </div>
       <ion-alert
         :is-open="showAlert"
         :header="alertHeader"
@@ -86,6 +87,7 @@ export default {
   },
   data() {
     return {
+      defaultPhoto : 'userDefault.png',
       userPhoto: null,
       edusername: '',
       originalUsername: '',
@@ -96,6 +98,7 @@ export default {
     };
   },
   async mounted() {
+    this.userPhoto = this.defaultPhoto;
     this.getUsername();
   },
   methods: {
@@ -152,7 +155,7 @@ export default {
       }
     },
     deletePhoto() {
-      this.userPhoto = null;
+      this.userPhoto = this.defaultPhoto;
     },
     async getUsername() {
       const userLogged = JSON.parse(localStorage.getItem('User-login'));
@@ -232,6 +235,29 @@ export default {
 
 
 <style>
+.container-editprofile{
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+}
+.container-editpro {
+position: relative;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: flex-end;
+width: 100%;
+height: 140px;
+background: var(--gradient-light);
+margin-bottom: 20px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .container-editpro{
+    background: var(--gradient-dark);
+    color: var(--ion-text-color-dark);
+  }
+}
 .photo-editpro {
 width: 100px;
 height: 100px;
@@ -248,28 +274,15 @@ display: flex;
 align-items: center;
 justify-content: center;
 }
-
-.container-editpro {
-position: relative;
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-justify-content: center;
-width: 100%;
-height: 130px;
-background: linear-gradient(to bottom, #BDD4DB, #FFFFFF);
-margin-bottom: 20px;
+@media (prefers-color-scheme: dark) {
+  .text-editpro {
+    color: var(--ion-text-color-dark);
+  }
 }
 
-.container-editphoto {
-margin-left: 50px;
-margin-top: 30px;
-}
+
 
 .header-editpro {
-position: absolute;
-bottom: 0;
-left: 60px;
 display: flex;
 align-items: center;
 margin-bottom: 25px;
@@ -284,6 +297,11 @@ margin-right: 15px;
 .text-editpro {
 font-size: 20px;
 color: #000;
+}
+@media (prefers-color-scheme: dark) {
+  .text-editpro {
+    color: var(--ion-text-color-dark);
+  }
 }
 
 .photo-container {
@@ -307,17 +325,22 @@ display: flex;
 justify-content: center;
 }
 .spacebuttons{
-  margin:80px 15px
+  margin:80px 10px
 }
 .container-data {
     display: flex;
     flex-direction: column;
     margin-top: 10px;
-    margin-right: 60px;
-    margin-left: 60px;
+    justify-content: center;
 }
 
 .separation-data {
     margin-top: 50px;
+}
+@media (prefers-color-scheme: dark) {
+  ion-item {
+    --background: transparent;
+    --color: inherit;
+  }
 }
 </style>
