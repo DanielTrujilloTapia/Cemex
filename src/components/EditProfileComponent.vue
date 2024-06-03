@@ -8,9 +8,7 @@
         </div>
       </div>
       <div class="container-editprofile">
-        <ion-grid>
           <ion-row>
-            <ion-col class="ion-text-center">
               <div class="photo-container">
                 <ion-img v-if="userPhoto" :src="userPhoto" class="photo-editpro" @click="selectPhoto"></ion-img>
                 <div v-else class="photo-placeholder" @click="selectPhoto"></div>
@@ -25,16 +23,13 @@
                   </ion-item>
                 </div>
               </div>
-            </ion-col>
+        
           </ion-row>
-        </ion-grid>
     
-      <div class="container-data">
         <div class="separation-data">
           <ion-label>Usuario</ion-label>
           <ion-input v-model="edusername" label-placement="floating" fill="outline" class="spacing" maxlength="10"></ion-input>
         </div>
-      </div>
       <div class="center">
       <ion-button class="spacebuttons" @click="handleButtonCancel" fill="outline" color="danger">Cancelar</ion-button>
       <ion-button class="spacebuttons" @click="saveUsername">Guardar</ion-button>
@@ -268,9 +263,6 @@ object-fit: cover;
 .photo-placeholder {
 width: 100px;
 height: 100px;
-background-color: rgb(236, 236, 236);
-cursor: pointer;
-display: flex;
 align-items: center;
 justify-content: center;
 }
@@ -305,27 +297,22 @@ color: #000;
 }
 
 .photo-container {
-position: relative;
 display: flex;
 align-items: center;
+margin-left: 50px;
 }
 
 .options {
-margin-left: 0px;
-display: flex;
-flex-direction: column;
-}
+margin-left: -30px;
 
-.options ion-item {
---inner-padding-end: 0px;
-}
 
+}
 .center {
 display: flex;
 justify-content: center;
 }
 .spacebuttons{
-  margin:80px 10px
+  margin:60px 10px
 }
 .container-data {
     display: flex;
