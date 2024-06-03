@@ -16,17 +16,17 @@
                     <div class="divider"></div> 
                 </div>
                 <div>
-                    <ion-item aria-hidden="true" :icon="createOutline" routerLink="/editprofile" lines="none">
+                    <ion-item aria-hidden="true" :icon="createOutline" routerLink="/editprofile" lines="none" v-if="permisosAdmin">
                         <ion-icon :icon="createOutline" class="icon-style"></ion-icon>
                         <ion-label>Editar Perfil</ion-label>
                         <ion-icon slot="end" :icon="chevronForwardOutline"></ion-icon>
                     </ion-item>
-                    <ion-item aria-hidden="true" routerLink="/changepassword" lines="none">
+                    <ion-item aria-hidden="true" routerLink="/changepassword" lines="none" v-if="permisosAdmin">
                         <ion-icon :icon="lockOpenOutline" class="icon-style"></ion-icon>
                         <ion-label>Cambiar Contraseña</ion-label>
                         <ion-icon slot="end" :icon="chevronForwardOutline"></ion-icon>
                     </ion-item>
-                    <ion-item aria-hidden="true" routerLink="/deleteaccount" lines="none">
+                    <ion-item aria-hidden="true" routerLink="/deleteaccount" lines="none" v-if="permisosAdmin">
                         <ion-icon :icon="closeCircleOutline" class="icon-style"></ion-icon>
                         <ion-label>Eliminar cuenta</ion-label>
                         <ion-icon slot="end" :icon="chevronForwardOutline"></ion-icon>
@@ -43,7 +43,8 @@
 </template>
 
 <script>
-import { IonPage, IonImg, IonLabel, IonIcon, IonItem, IonList, IonContent, IonButton } from '@ionic/vue';
+import { ref } from 'vue';
+import { IonPage, IonImg, IonLabel, IonIcon, IonItem, IonContent } from '@ionic/vue';
 import { lockOpenOutline, personOutline, createOutline, closeCircleOutline, chevronForwardOutline, logOutOutline } from 'ionicons/icons';
 
 export default {
@@ -54,19 +55,29 @@ export default {
         IonLabel,
         IonIcon,
         IonItem,
-        IonList,
         IonContent,
-        IonButton,
 
     },
     setup() {
+
+        const TypeUserPermissions = localStorage.getItem('User-login');
+        const parsedPermissions = JSON.parse(TypeUserPermissions);
+        const permisosAdmin = ref(null);
+
+        if (parsedPermissions.idusucattipousuario === 2 || parsedPermissions.idusucattipousuario === 3) {
+          permisosAdmin.value = false;
+        } else {
+          permisosAdmin.value = true;
+        }
+
         return {
             personOutline,
             lockOpenOutline,
             createOutline,
             closeCircleOutline,
             chevronForwardOutline,
-            logOutOutline
+            logOutOutline,
+            permisosAdmin
         };
     },
     methods:{
