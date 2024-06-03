@@ -158,6 +158,7 @@ export default {
       itemsPerPage: 5,
       deletealert: false,
       id:'',
+      userLoggedinApp : JSON.parse(localStorage.getItem('User-login'))
     };
   },
   computed: {
@@ -166,7 +167,8 @@ export default {
         const matchesName = this.searchName ? usuario.nom_usuario.toLowerCase().includes(this.searchName.toLowerCase()) : true;
         const matchesType = this.searchType ? (usuario.tipoUsuario && usuario.tipoUsuario.nom_tipo === this.searchType) : true;
         const matchesState = this.searchState ? (usuario.estadoUsuario && usuario.estadoUsuario.nom_estado === this.searchState) : true;
-        return matchesName && matchesType && matchesState;
+        const hideUserLogged = usuario.nom_usuario !== this.userLoggedinApp.nom_usuario;
+        return matchesName && matchesType && matchesState && hideUserLogged;
       });
     },
     paginatedUsers() {
