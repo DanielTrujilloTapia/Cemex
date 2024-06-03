@@ -189,7 +189,7 @@ export default {
 .header-icon-cp {
     width: 25px;
     height: 25px;
-    margin-right: 15px;
+    margin-right: 20px;
 }
 
 .change {
