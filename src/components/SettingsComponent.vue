@@ -31,6 +31,11 @@
                         <ion-label>Eliminar cuenta</ion-label>
                         <ion-icon slot="end" :icon="chevronForwardOutline"></ion-icon>
                     </ion-item>
+                    <ion-item aria-hidden="true" @click="logout" routerLink="/login" lines="none">
+                        <ion-icon color="danger" :icon="logOutOutline" class="icon-style"></ion-icon>
+                        <ion-label>Cerrar Sesion</ion-label>
+                        <ion-icon slot="end" :icon="chevronForwardOutline"></ion-icon>
+                    </ion-item>
                 </div>
             </div>
         </ion-content>
@@ -39,7 +44,7 @@
 
 <script>
 import { IonPage, IonImg, IonLabel, IonIcon, IonItem, IonList, IonContent, IonButton } from '@ionic/vue';
-import { lockOpenOutline, personOutline, createOutline, closeCircleOutline, chevronForwardOutline } from 'ionicons/icons';
+import { lockOpenOutline, personOutline, createOutline, closeCircleOutline, chevronForwardOutline, logOutOutline } from 'ionicons/icons';
 
 export default {
     name: 'SettingsComponent',
@@ -51,7 +56,8 @@ export default {
         IonItem,
         IonList,
         IonContent,
-        IonButton
+        IonButton,
+
     },
     setup() {
         return {
@@ -59,7 +65,8 @@ export default {
             lockOpenOutline,
             createOutline,
             closeCircleOutline,
-            chevronForwardOutline
+            chevronForwardOutline,
+            logOutOutline
         };
     },
     methods:{

@@ -93,6 +93,8 @@
         if(userToLogin.idusucatestado === 1){
           localStorage.setItem('User-login', JSON.stringify(userToLogin)); 
           this.loading = false;
+          this.username='';
+          this.password='';
           alert('Inicio de sesión exitoso');
           this.$router.push("/tabs");
         }
