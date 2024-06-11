@@ -20,10 +20,10 @@
             <ion-input-password-toggle slot="end"></ion-input-password-toggle>
           </ion-input>
           <ion-label>Indícanos por qué quieres eliminar tu cuenta (opcional)</ion-label>
-          <ion-input label-placement="floating" fill="outline" class="spacing-delete" rows="4"></ion-input>
+          <ion-input v-model="inputComments" label-placement="floating" fill="outline" class="spacing-delete" rows="4"></ion-input>
         </div>
         <div style="display: flex;">
-          <ion-button class="SpaceButton" @click="handleButtonCancel" fill="outline" color="danger">Cancelar</ion-button>
+          <ion-button class="SpaceButton" @click="handleButtonBack" fill="outline" color="danger">Cancelar</ion-button>
           <ion-button class="SpaceButton" @click="deleteAccount" fill="solid" color="primary">Eliminar</ion-button>
         </div>
       </div>
@@ -58,6 +58,7 @@ export default {
     return {
       inputUsername: '',
       inputPassword: '',
+      inputComments: '',
       showAlert: false,
       alertHeader: '',
       alertMessage: '',
@@ -74,7 +75,19 @@ export default {
       handleButtonCancel
     }
   },
+  mounted() {
+    this.clearInputsD();
+  },
   methods: {
+    clearInputsD() {
+      this.inputUsername = '';
+      this.inputPassword = '';
+      this.inputComments = '';
+    },
+    handleButtonBack(){
+      this.handleButtonCancel();
+      this.clearInputsD();
+    },
     async validateUser() {
       if (this.inputUsername !== '' && this.inputPassword !== '') {
         const userSaved = JSON.parse(localStorage.getItem('User-login'));
@@ -128,6 +141,7 @@ export default {
 
         if (response.ok) {
           this.showAlertDialog('Excelente!', 'Cuenta eliminada correctamente');
+          this.clearInputsD();
           localStorage.removeItem('User-login');
           this.$router.push("/login");
         } else {
@@ -135,7 +149,8 @@ export default {
         }
       } catch (error) {
         this.showAlertDialog('Error', 'Existe informacion aliada a esta cuenta');
-      }},
+      }
+    },
     showAlertDialog(header, message) {
       this.alertHeader = header;
       this.alertMessage = message;
@@ -144,7 +159,8 @@ export default {
           text: 'Ok',
           handler: () => {
             this.showAlert = false;
-          }}
+          }
+        }
       ];
       this.showAlert = true;
     }
